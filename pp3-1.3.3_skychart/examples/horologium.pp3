@@ -1,0 +1,35 @@
+# Horologium, the Pendulum Clock
+#
+
+filename output horologium.tex
+filename include wiki.pp3
+
+set constellation HOR
+set center_rectascension   3.3
+set center_declination   -53
+set box_height 9
+set box_width 7
+
+set faintest_star_disk_magnitude 5.5
+
+objects_and_labels
+
+
+add_labels HD 26967  HD 18866  HD 26612  HD 16920  
+           HD 16555  HD 17051  HD 19319 ; # alpha, beta, delta,
+                                          # zeta, eta, iota, and mu Hor
+
+set_label_text HD 18242 "\\small R"
+add_labels HD 18242 ;
+reposition HD 18242 NE ;
+
+
+text Horologium at 3.8 -52 along declination ;
+text Hydrus at 3.8 -67.5 along declination towards S ;
+text Fornax at 3.5 -38 along declination ;
+text Phe at 2.3 -47 along declination ;
+text Eridanus at 3.4 -45 along declination ;
+text Mensa at 3.7 -79 along declination towards W ;
+text Dorado at 4.7 -65 along declination towards W ;
+text Reticulum at 4.5 -66.5 along declination ;
+delete HD 22634  HD 22252 ;   # Making space for "Reticulum"

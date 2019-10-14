@@ -1,0 +1,3239 @@
+% -*-texinfo-*-
+\def\niceracronym#1{#1}
+%\def\rmdefault{ppl}\def\ne{\mathrel{\not{}\mskip-8mu=}}\input pstexinfo
+\input texinfo
+@c@let@acronym@niceracronym
+
+@c 	$Id: pp3.texi,v 1.46 2004/03/21 14:33:43 bronger Exp $	
+
+@c======================================================================@>
+@c    pp3.texi - Part of the PP3 Program                                @>
+@c    Copyright 2002--2004 Torsten Bronger                              @>
+@c                         <bronger@users.sourceforge.net>              @>
+@c                                                                      @>
+@c  This program may be distributed and/or modified under the           @>
+@c  conditions of the MIT licence with the following constraint:        @>
+@c  If you copy or distribute a modified version of this Software, the  @>
+@c  entire resulting derived work must be given a different name and    @>
+@c  distributed under the terms of a permission notice identical to     @>
+@c  this one.                                                           @>
+@c                                                                      @>
+@c  Permission is hereby granted, free of charge, to any person         @>
+@c  obtaining a copy of this software and associated documentation      @>
+@c  files (the ``Software''), to deal in the Software without           @>
+@c  restriction, including without limitation the rights to use, copy,  @>
+@c  modify, merge, publish, distribute, sublicense, and/or sell copies  @>
+@c  of the Software, and to permit persons to whom the Software is      @>
+@c  furnished to do so, subject to the following conditions:            @>
+@c                                                                      @>
+@c      The above copyright notice and this permission notice shall be  @>
+@c      included in all copies or substantial portions of the           @>
+@c      Software.                                                       @>
+@c                                                                      @>
+@c      If you copy or distribute a modified version of this Software,  @>
+@c      the entire resulting derived work must be given a different     @>
+@c      name and distributed under the terms of a permission notice     @>
+@c      identical to this one.                                          @>
+@c                                                                      @>
+@c  The Software is provided ``as is'', without warranty of any kind,   @>
+@c  express or implied, including but not limited to the warranties of  @>
+@c  merchantability, fitness for a particular purpose and               @>
+@c  noninfringement.  In no event shall the authors or copyright        @>
+@c  holders be liable for any claim, damages or other liability,        @>
+@c  whether in an action of contract, tort or otherwise, arising from,  @>
+@c  out of or in connection with the Software or the use or other       @>
+@c  dealings in the Software.                                           @>
+@c======================================================================@>
+
+@c %**start of header
+@setchapternewpage odd
+@setfilename pp3.info
+
+@set VERSION 1.3.2
+@set SHORTVERSION 132
+
+@settitle PP3 @value{VERSION}
+@documentencoding ISO-8859-1
+@documentlanguage en
+@c %**end of header
+
+@defindex kw
+@syncodeindex kw cp
+
+@macro PPTHREE {}
+@acronym{PP3}
+@end macro
+
+@macro s {}
+@tex
+@kern0.1667em%
+@end tex
+@end macro
+
+@macro xmarksthespot {}
+@tex
+`@math{@times{}}'@ignorespaces
+@end tex
+@ifnottex
+`x'@c
+@end ifnottex
+@end macro
+
+@copying
+This manual is for @PPTHREE{} (version @value{VERSION}),
+which is a celestial charts drawing tool.
+
+Copyright @copyright{} 2002--2004 Torsten Bronger
+@t{<}@email{bronger@@users.sourceforge.net}@t{>}.
+
+
+@quotation
+This documentation is free software; you can redistribute it and/or
+modify it under the terms of the @acronym{MIT} licence.  Please see the
+@t{COPYING} file of the @PPTHREE{} distribution for further information.
+@end quotation
+@end copying
+
+@finalout
+@titlepage
+@title PP3
+@subtitle typesetting beautiful celestial maps
+@subtitle version @value{VERSION}
+@sp 2
+@image{title,10cm,,Constellation map of Orion and its neighbours}
+@author Torsten Bronger
+@page
+@vskip 0pt plus 1filll
+@insertcopying
+@end titlepage
+
+@dircategory Individual utilities
+@direntry
+* PP3: (PP3).           Drawing celestial maps.
+@end direntry
+
+@iftex
+@hyphenation{ca-ta-logue ca-ta-logues}
+@end iftex
+
+
+@ifnottex
+@node Top
+@top The PP3 program for drawing celestial maps.
+
+@PPTHREE{} generates celestial charts of high (typo)graphical quality.
+It uses @LaTeX{} + pstricks for this, so the end formats are
+@acronym{EPS} and @acronym{PDF} (in contrast to mere bitmaps).
+
+The program automatically avoids labels that overlap, and you can change
+many parameters.  You can place arbitrary text on the map using the
+flexibility of the LaTeX language.
+
+@menu
+* Introduction::                The ideas behind it.
+* Installation::                Some ways to set PP3 up.
+* Basic astronomical terms::    Rectascension, declination, and such.
+* Usage::                       How to invoke PP3.
+* Input scripts::               Telling PP3 what to do.
+* Keywords reference::          List of all PP3 keywords.
+* PP3 and LaTeX::               LaTeX in labels, and LaTeX preambles.
+* Known problems::              List of known shortcomings and bugs.
+* Data file formats::           Internal structure of the database files.
+* List of all constellations::  All 88 official constellations with
+                                  their abbreviations and coordinates.
+* Index::                       General index.
+@end menu
+@end ifnottex
+
+@ifhtml
+This manual exists as a
+@uref{http://pp3.sourceforge.net/manual/,multiple HTML} (also in
+@uref{http://pp3.sourceforge.net/pp3man.zip,@acronym{ZIP} form}) and
+@uref{http://pp3.sourceforge.net/manual/pp3.html,single HTML page} and a
+@uref{http://pp3.sourceforge.net/manual/pp3.pdf,PDF file}.
+@end ifhtml
+
+@c Output the table of the contents at the beginning.
+@contents
+
+@ifnottex
+@insertcopying
+@end ifnottex
+
+
+@node Introduction
+@chapter Introduction
+
+@menu
+* What it is::                  Features of PP3.
+* What it is not::              Limitations of PP3.
+* Online resources::            Where to find PP3 on the Internet.
+* Successful use of PP3::       Things that have been done using PP3.
+@end menu
+
+
+@node What it is
+@section What it is
+
+There are many programs that can create stellar maps.  But none of them
+reaches @PPTHREE{}'s typographic and graphical quality.  In contrast to
+other programs @PPTHREE{} produces vector images
+(e.@s{}g.@:@tie{}@acronym{PDFs}) rather than mere bitmaps.  Therefore it
+is perfectly suited for creating illustrations for books or other print
+media.  But even converted to bitmaps for web pages, it exceeds usual
+quality.
+
+@PPTHREE{} is optimised for the semi-automatic generation of large sets
+of sky maps.  It has decent default behaviour, however it can be
+customised very flexibly.  It tries to take as much fine-tuning work
+away from you as possible.
+
+
+@node What it is not
+@section What it is not
+
+But I must also point out what @PPTHREE{} is @emph{not}.  It cannot help
+you to professionally prepare your next observation night, nor is
+@PPTHREE{} a visualisation tool for astronomical databases, with pop-up
+window information for every sky object on the screen.
+
+In fact, @PPTHREE{} not even has a graphical user interface.  So don't
+expect any windows at all, and your mouse will be useless.  Instead,
+@PPTHREE{} reads from one file and writes to another file.  (This is
+done not only because its author was lazy but because it increases
+efficiency, too.)  So, the program itself is quite stinted, but its
+results are worth it!
+
+
+@node Online resources
+@section Online resources
+
+Further information about @PPTHREE{} beyond this manual and downloads on
+the Internet:
+
+@table @asis
+@item @uref{http://pp3.sourceforge.net}
+@cindex homepage
+@PPTHREE{}'s homepage.
+
+@item @uref{http://sourceforge.net/projects/pp3}
+@cindex download
+@PPTHREE{}'s project page with quick links to downloads.
+
+@item @uref{http://sourceforge.net/project/showfiles.php?group_id=71469,Download area}
+List of all downloadable files, also for older versions.
+
+@item @uref{http://sourceforge.net/tracker/?atid=531401&group_id=71469,Bug data base}
+@cindex bugs
+Here you can see open bugs, make comments, and report new bugs that
+you've found.
+
+@item @uref{http://sourceforge.net/forum/?group_id=71469,Discussion forums}
+@cindex support
+@cindex help
+Ask questions about @PPTHREE{} here.
+
+@item @uref{http://sourceforge.net/tracker/?atid=531404&group_id=71469,Feature requests}
+@cindex feature requests
+Suggest new features and improvements here.
+@end table
+
+Please login when you use one of the services on Sourceforge.  It makes
+responding easier.
+
+
+@node Successful use of PP3
+@section Successful use of PP3
+
+@PPTHREE{} has been used in real life already and has proven its
+helpfulness.
+
+@unnumberedsubsec Wikipedia
+@cindex Wikipedia
+
+@PPTHREE{} has created the celestial maps of all 88 constellations on
+@uref{http://www.wikipedia.org,Wikipedia}, the free encyclopedia.  Feel
+free to browse through a
+@uref{http://wikipedia.org/w/wiki.phtml?title=List_of_constellations,list
+of all constellations}.
+
+@cindex Bitmaps
+@cindex Gimp
+@cindex @acronym{PNG}
+
+This is a web page, so you need bitmaps@footnote{as long as we don't
+have @acronym{SVG}}, and a short @uref{http://www.gimp.org,Gimp}
+script@footnote{which is included into the distribution} helped me to
+convert @PPTHREE{}'s @acronym{EPS} vector output to @acronym{PNG}
+bitmaps.  Additionally, this script creates smaller thumbnail version
+for all charts that exceed a certain width.
+
+The result is that one can create all maps plus their thumbnails with
+one simple command call:
+
+@example
+make
+@end example
+
+@noindent
+Surely it can't become simpler.  You may retort ``Well, but creating the
+maps must have been the actual work''.  Of course it was, but first it
+took only 10--15 minutes per map, because much work is done by the
+default behaviour of @PPTHREE{} itself.  And secondly:
+
+@unnumberedsubsec French Wikipedia
+@cindex Wikipedia
+
+Several months later the @uref{http://fr.wikipedia.org,French division
+of Wikipedia} wanted to translate the maps to French.  They wanted
+another background colour and French labels and constellation names.
+They provided me with a translation table.  It took me three hours to
+adjust the scripts, to run @file{make} again, and to upload the
+@acronym{ZIP} file with all the demanded bitmaps.  See for example the
+@uref{http://fr.wikipedia.org/wiki/Scorpion_(constellation),Scorpius
+entry}.
+
+@unnumberedsubsec h2g2
+@cindex h2g2
+
+Originally @PPTHREE{} was written for a project on
+@uref{http://www.bbc.co.uk/h2g2/guide/,h2g2}, an @emph{edited} Internet
+encyclopedia.  Unfortunately the BBC editors wanted very small bitmaps
+that would not have been helpful, and they were too lazy to include all
+the 88@tie{}bitmaps.  So the project died, but on a smaller scale (for
+ten constellations or so), it indeed motivated authors to contribute
+articles about constellations.  The maps were externally linked.
+
+
+@node Installation
+@chapter Installation
+@cindex installation
+@cindex downloads
+@cindex distribution
+
+You can get the latest @PPTHREE{} file releases from
+@uref{http://sourceforge.net/projects/pp3,@PPTHREE{}'s project page on
+Sourceforge}.  The main @PPTHREE{} distribution comes as several files,
+namely
+
+@table @file
+@item pp3-@var{version}-win.zip
+is the complete Windows distribution.
+
+@item pp3-@var{version}-1tb.i386.rpm
+is the complete Linux RPM distribution.  (There is also the
+corresponding source RPM called @file{pp3-@var{version}-1tb.src.rpm}.)
+
+@item pp3-@var{version}.tar.bz2
+is the complete source distribution.
+
+@item pp3-@var{version}-cripple.tar.gz
+is a partial source distribution.  Milky Way, Nebulae, and the
+@acronym{CWEB} source code are omitted.
+
+@end table
+
+@noindent
+Obviously you need only @emph{one} of these files.
+
+@menu
+* Windows::                     Installation on Windows.
+* Linux::                       Installation on Linux.
+* Increase TeX's memory::       If you want to see the Milky Way.
+@end menu
+
+
+@node Windows
+@section Installation on Windows
+@cindex Windows
+
+Although @PPTHREE{} runs independently of other programs, it is not
+useful when it's alone.  It needs two external tools in order to work
+properly: @TeX{} and Ghostscript.
+
+@center @emph{You need not know how to use @TeX{} and Ghostscript!}
+
+On most Unix/Linux systems @TeX{} and Ghostscript are already installed.
+But on Windows, you have to install them yourself.  Fortunately this is
+not difficult, and both programs may be useful for other purposes, too.
+
+@menu
+* Getting TeX::                 Installing the TeX typesetting engine.
+* Getting Ghostscript::         Installing Ghostscript for Postscript
+                                  handling.
+* Installing PP3::              Finally installing PP3 itself.
+@end menu
+
+
+@node Getting TeX
+@subsection Getting @TeX{}
+@cindex @TeX{}
+@cindex PSTricks
+
+@TeX{} is a mighty typesetter.  @PPTHREE{} calls @TeX{} in order to
+actually create the stellar map.  The result is a Postscript file.
+
+There are two major @TeX{} variants for Windows, namely
+@uref{http://www.miktex.org,Mik@TeX{}} and
+@uref{http://www.tug.org/texlive/,@TeX{}@tie{}Live}.  Both are rather
+similar in their functionality, and both come with a nice installation
+tool.  Please assure that the PSTricks package as part of @TeX{} is
+installed, however this is highly probable anyway.
+
+
+@node Getting Ghostscript
+@subsection Getting Ghostscript
+@cindex Ghostscript
+@cindex Postscript
+
+The best tool for dealing with Postscript files is
+@uref{http://www.cs.wisc.edu/~ghost/doc/AFPL/get811.htm,Ghostscript}.
+In particular, if you've installed Ghostscript, PP3 is able to generate
+@acronym{PDF} files for you.  It is wise (although not necessary) to
+install @uref{http://www.cs.wisc.edu/~ghost/gsview/get45.htm,GSView},
+too.  It lets you view arbitrary Postscript files on screen.
+
+
+@node Installing PP3
+@subsection Installation of PP3 itself
+
+When @TeX{} and Ghostscript are in the right place, you finish the
+installation by unpacking the @PPTHREE{} @acronym{ZIP} file and copying
+its content in the proper directories:
+
+@enumerate
+@item
+@cindex environment variables
+@cindex @env{PATH}
+Copy @file{pp3.exe} to an arbitrary directory that is in your
+@env{PATH}.
+
+@item
+@cindex @env{PP3DATA}
+Copy all the other files to @emph{one single} arbitrary directory.  Then
+set the environment variable @env{PP3DATA} to this directory.
+
+@end enumerate
+
+For the sake of simplicity, I recommend to copy everything to
+@file{C:\Programs\pp3} and to set your @env{PATH} environment variable
+to
+
+@display
+@code{@var{old PATH};C:\Programs\pp3}
+@end display
+
+@noindent
+and to set the @env{PP3DATA} environment variable to
+@file{C:\Programs\pp3}.  That's it.
+
+
+@node Linux
+@section Installation on Linux
+@cindex Linux
+
+@menu
+* RPM installation::            The simple way.
+* Building from sources::       The hard way.
+@end menu
+
+Before you install @PPTHREE{}, ensure that @TeX{} and Ghostscript are
+installed.
+
+
+@node RPM installation
+@subsection @acronym{RPM} installation
+@cindex @acronym{RPM}
+
+You should consider to use the @acronym{RPM} file, because it is the
+simplest installation.  It works for SuSE Linux and probably also for
+Red@s{}Hat.  Just enter (as root)
+
+@display
+@code{rpm -i @var{RPM-file-name}}
+@end display
+
+@noindent
+That's it.
+
+
+@node Building from sources
+@subsection Building from sources
+@cindex sources
+@cindex @acronym{CWEB}
+
+(Actually you can compile the sources on Windows, too (of course), but
+since most people who do compile are Linux users, I dare to put it in
+the Linux section.)
+
+@PPTHREE{} is written in @acronym{CWEB}@.  This is special form of C++
+and can be transformed to real C++ trivially.  You only need the
+@uref{http://www-cs-faculty.stanford.edu/~knuth/cweb.html,@acronym{CWEB}
+programs} installed.  For your convenience the C++ code of @PPTHREE{} is
+included into the source distribution, so you need @acronym{CWEB} only
+if you want to modify the program.
+
+There is no @file{configure} script.  Just call @code{make} and (as
+root) @code{make install}.  Before that, you may want to adjust some
+paths in the @file{Makefile}.
+
+@cindex @env{PP3DATA}
+@cindex environment variables
+
+@PPTHREE{} looks for its data files (all files with the @file{.dat}
+extension) in a special directory that is pre-compiled in the
+executable.  The Makefile assures that this is the correct one, but you
+can override that at runtime with the environment variable
+@env{PP3DATA}.
+
+
+@node Increase TeX's memory
+@section Increase @TeX{}'s memory
+@cindex @TeX{}
+@cindex pool size (@TeX{})
+@cindex te@TeX{}
+
+There is exactly one object that can need a lot of memory: the Milky
+Way.  Therefore it's switched off by default.  But if you want to see
+the Milky Way on your maps, you probably should set the main memory size
+of your @TeX{} distribution to its maximal value.  This is very
+implementation specific.  With te@TeX{} (Linux) you have to find the
+file @file{texmf.cnf} and set `@code{main_memory.latex}' to 7500000.
+Then call (as root)
+
+@example
+fmtutil --byfmt latex
+@end example
+
+@cindex fp@TeX{}
+@cindex @TeX{}@s{}Live
+
+@noindent
+With fp@TeX{}/@TeX{}@s{}Live (Windows) it's the same.
+
+@cindex Mik@TeX{}
+
+Mik@TeX{} however (Windows too) is different.  Look for a directory
+called @file{localtexmf}.  Then create the file@footnote{It may be
+necessary to create the sub directories, too.}
+@file{localtexmf\miktex\config\miktex.ini} and write
+
+@example
+mem_max=7500000
+@end example
+
+@noindent
+in it.
+
+Alternatively (albeit not cleanly), look for an existing file called
+@file{miktex.ini} and change the line with @code{mem_max} to the above.
+
+@sp 1
+These are the most common @TeX{} variants.  For others please have a
+look in the manual of your @TeX{} distribution for definitive
+information.
+
+
+@node Basic astronomical terms
+@chapter Basic astronomical terms
+
+The following is a mere crash course.  It is supposed to enable you to
+use @PPTHREE{} even if you didn't know how astronomers describe the sky.
+
+Readers competent in astronomy may skip it, although
+@ref{Constellations} and @ref{Catalogues} contain minor program
+peculiarities, too.
+
+@menu
+* Celestial coordinate system::  Rectascension and declination.
+* Magnitudes::                  Stellar brightnesses.
+* Constellations::              Constellations and their boundaries.
+* Catalogues::                  How to name one particular sky
+                                  object properly.
+@end menu
+
+
+@node Celestial coordinate system
+@section Celestial coordinate system
+@cindex coordinates, celestial
+
+On a sheet of paper, every point has an @math{x} and a @math{y}
+coordinate.  On planet Earth, every location has a @emph{longitude} and
+a @emph{latitude}.
+
+@cindex rectascension
+@cindex declination
+
+With a very similar system astronomers give the coordinates of every
+point in the sky.  The sky longitude is called @emph{rectascension} and
+the sky latitude is called @emph{declination}.  There is a sky North
+Pole (near the Polar Star), a sky South Pole, and a sky equator.  You
+can make globes of the sky like of the Earth, with the only difference
+that you must imagine being @emph{inside} the globe.
+
+So, in a way, the rectascension is the @math{x} coordinate.  It is given
+in `hours' (h) from 0@dmn{h} to 24@dmn{h}.  Since the sky is circular,
+both 0@dmn{h} and 24@dmn{h} are the same rectascension, and 12@dmn{h} is
+the opposite to it.
+
+Usually the fraction of the rectascension that is smaller than 1@dmn{h}
+is given in minutes and seconds, however in @PPTHREE{} the rectascension
+is one decimal fraction number.
+
+The declination corresponds to the @math{y} coordinate.  It is measured
+from @math{-90^\circ} (South Pole) over @math{0^\circ} (equator) to
+@math{+90^\circ} (North Pole).
+
+
+@node Magnitudes
+@section The system of magnitudes
+@cindex magnitudes
+@cindex brightness, astronomical
+
+Theoretically you could measure the brightness of stars in candela like
+the brightness of a light bulb.  But this is rather awkward.  Instead,
+astronomers use the system of @emph{magnitudes}@tie{}(m).
+
+The brighter a star, the smaller is its magnitude.  Sirius is the
+brightest star in the sky, and its brightness is @math{-1.6}@dmn{m}.
+Vega has a brightness of @math{0.0}@dmn{m}, and Polaris, the Pole Star,
+of @math{2.0}@dmn{m}.  The faintest stars that you can see with the
+naked eye in a very clear sky have @math{6}@dmn{m}.
+
+The faintest stars in the standard catalogue of @PPTHREE{} are of
+approx.@tie{}@math{7}@dmn{m}, however extremely good terrestrial
+telescopes can see up to @math{22}@dmn{m}.
+
+
+@node Constellations
+@section Constellations
+@cindex constellations
+
+Since the 1930s, the sky is officially divided into 88 constellations.
+At that time, the boundaries between the constellations were clearly
+defined, too: namely by the coordinates of sky points that, when
+connected with their respective neighbours, create the boundaries.
+
+Every constellation has a Latin name and a three letter abbreviation.
+For example ``Orion -- Ori'', or ``Ursa Major -- UMa'' (Great Bear), or
+``Hydrus -- Hyi'' (Male Water Snake).  This abbreviation plays a big
+role in @PPTHREE{} because it's the only way to denote a constellation.
+You must use only uppercase letters in the abbreviation: @samp{ORI},
+@samp{UMA}, @samp{HYI}.
+
+One constellation, the snake or ``Serpens'', is divided into two parts,
+``Serpens Caput'' (Head) and ``Serpens Cauda'' (Tail).  They are
+abbreviated @code{SER1} and @code{SER2} in @PPTHREE{}.  If you say
+@code{SER} only, you mean both parts.
+
+
+@node Catalogues
+@section Catalogues: Flamsteed, Henry Draper, NGC/IC and Messier
+
+When you use @PPTHREE{} you have to tell the program e.@s{}g.@: which
+star you want to delete from the map or which nebula shall get a
+different label.  For this, every sky object must have a distinct name
+in @PPTHREE{}.
+
+By and large there are two kinds of objects in the sky: stars and
+nebulae.  Astronomers have created many catalogues of them.  There are
+two star catalogues and three nebulae catalogues supported in
+@PPTHREE{}.
+
+@menu
+* Denoting stars::              How stars get a name in PP3.
+* Denoting nebulae::            How nebulae get a name in PP3.
+@end menu
+
+
+@node Denoting stars
+@subsection Denoting stars
+@cindex @acronym{HD}
+@cindex Henry Draper
+@cindex Flamsteed
+@cindex stars
+
+The two star catalogues are the Flamsteed and the Henry Draper
+(@acronym{HD}) numbers.  Flamsteed gave numbers beginning with `1' to
+stars in each constellation.  The Flamsteed catalogue is small and
+doesn't contain the complete southern sky.  In contrast to that, the
+@acronym{HD} catalogue doesn't distinguish between constellations, it
+covers the whole sky, and also contains faint stars.  However the
+@acronym{HD} names are harder to read.
+
+For example Rigel, @math{\beta}@tie{}Ori, can be identified in
+@PPTHREE{} with either
+
+@example
+ORI 19
+@end example
+
+@noindent
+where `@code{ORI}' is Rigel's constellation (Orion) and `@code{19}' the
+Flamsteed number; or with
+
+@example
+HD 34085
+@end example
+
+@noindent
+where `@code{34085}' is Rigel's Henry Draper catalogue number.  Both are
+totally equivalent.  The free program
+@uref{http://www.shatters.net/celestia/,Celestia} is very useful
+for finding Flamsteed or @acronym{HD} numbers.
+
+
+@node Denoting nebulae
+@subsection Denoting nebulae
+@cindex @acronym{NGC}
+@cindex @acronym{IC}
+@cindex Messier
+@cindex nebulae
+
+The two nebula catalogues @acronym{NGC} and @acronym{IC} are
+complementary, i.@s{}e.@: they don't have@footnote{well, shouldn't have}
+any nebulae in common.  For example, the North America Nebula is called
+`@code{NGC 7000}' and the Orion Nebula is '@code{NGC 1976}'.  The
+@acronym{IC} catalogue usually contains fainter objects.
+
+Parallel to that there is the much older and much smaller Messier
+catalogue, abbreviated@tie{}`M'.  For example, the Orion Nebula can also
+be called '@code{M 42}', whereas the North America Nebula isn't included
+in Messier's catalogue.
+
+Pay attention to
+
+@itemize
+@item
+the catalogue abbreviation in all uppercase and
+
+@item
+the space between the catalogue abbreviation and the number.
+@end itemize
+
+
+@node Usage
+@chapter Usage
+
+@menu
+* Invocation::                  Starting PP3.
+* Using pipes::                 If you really need pipes for some
+                                  reason.
+@end menu
+
+
+@node Invocation
+@section Starting PP3
+@cindex Invocation
+@cindex command line syntax
+@cindex syntax, invocation
+
+Invoking @PPTHREE{} is very straightforward.  Since it is a command line
+program you only have to call it somehow and give a so-called input
+script as the parameter, see @ref{Input scripts}.  For example, entering
+
+@example
+pp3 orion.pp3
+@end example
+
+@noindent
+on the command line starts @PPTHREE{} and lets it generate the file
+@file{orion.pdf}, which is a @acronym{PDF} file with a star map of
+Orion.  You can view this @acronym{PDF} with Acrobat Viewer, convert it
+to a bitmap, or you can embed it into a text of yours.
+
+Actually there are three possible output formats.  By default,
+@PPTHREE{} generates a @LaTeX{} file in the current directory.  But most
+people cannot do much with it, therefore certain commands in the input
+script trigger @acronym{EPS} or @acronym{PDF} output, see @ref{Output
+control}.
+
+@PPTHREE{} can't generate bitmaps.  If you need bitmaps you must use an
+appropriate program (e.@s{}g.@: GSView or the
+@uref{http://www.gimp.org,Gimp}) for converting the vector data to
+bitmaps.
+
+
+@node Using pipes
+@section Using pipes
+@cindex pipes
+
+Especially on Unix it is very common to read from standard input and to
+write to standard output.  I don't think that this is sensible for
+@PPTHREE{}, but anyway, I included this facility.  If you give
+`@code{-}' as the only parameter, @PPTHREE{} reads the input script from
+standard input, and if you don't give an output filename in the input
+script (@pxref{Input scripts}), @PPTHREE{} writes to standard output.
+
+
+@node Input scripts
+@chapter Writing input scripts
+@cindex scripts
+@cindex input scripts
+
+Input scripts are the most important part of @PPTHREE{}, at least for
+the user.  They contain some sort of wishlist about the map that you
+want @PPTHREE{} to create.
+
+@menu
+* Minimal example::             The first four PP3 lines.
+* More bells and wistles::      How to make it look nicer.
+* Dimensions and scale::        Set size and magnification of the map.
+* Parameters and commands::     The two parts of an input script.
+* Labels::                      Changing implicitly created labels.
+* Deleting and adding objects::  Remove or insert stars and nebulae.
+* Penalty scheme::              How PP3 avoids overlaps of labels.
+@end menu
+
+
+@node Minimal example
+@section Minimal example input script
+@cindex example input script
+
+The minimal @PPTHREE{} input script is -- well -- the empty file.  Then
+@PPTHREE{}'s default values create a dark blue star map of Orion:
+
+@image{orion,10cm,,Constellation map of Orion}
+
+You can override these defaults step by step.  Let's do so: Write
+
+@example
+# Cygnus, the Swan
+
+filename output swan.tex
+switch pdf_output on
+
+set center_rectascension  19.95
+set center_declination    40.8
+@end example
+
+@noindent
+to the file @file{swan.pp3} and call
+
+@cindex invocation
+
+@example
+pp3 swan.pp3
+@end example
+
+@noindent
+The result of these only four lines of input is a file @file{swan.pdf}
+in the current directory with a star map of the Swan.
+
+@cindex comments
+@kwindex #
+
+The lines of @file{swan.pp3} are not difficult to explain:  The very
+first line is a comment.  Everything that starts with a @code{#} is a
+comment.  You can write descriptive text in them to make the file more
+readable.
+
+@kwindex filename
+@kwindex output
+
+The line
+
+@example
+filename output swan.tex
+@end example
+
+@noindent
+makes @PPTHREE{} write the generated map to the file @file{swan.tex}.
+But such a file is rarely the desired output.  Therefore the next line
+
+@kwindex switch
+@kwindex pdf_output
+
+@example
+switch pdf_output on
+@end example
+
+@cindex @acronym{PDF}
+
+@noindent
+tells @PPTHREE{} that we want to have a @acronym{PDF} file.  So
+@PPTHREE{} does everything necessary for that.  And finally,
+
+@kwindex set
+@kwindex center_rectascension
+@kwindex center_declination
+
+@example
+set center_rectascension  19.95
+set center_declination    40.8
+@end example
+
+@noindent
+denotes the area of the sky that we want to be displayed.  Both values
+indicate the celestial point that we want to have in the centre of the
+map.  In this case, 19.95@dmn{h} rectascension and @math{+40.8^\circ}
+declination which is the centre of the constellation Swan.  @xref{List
+of all constellations}, for a complete list of all constellations, along
+with their coordinates and more.
+
+
+@node More bells and wistles
+@section More bells and wistles
+
+Let's continue with our Swan example of the previous section.
+
+@cindex Milky Way
+@kwindex switch
+@kwindex milky_way
+
+Normally the Milky Way is switched off, because it consumes a lot of
+memory, see @ref{Increase TeX's memory}.  However it looks rather nice,
+so let's switch it on:
+
+@example
+switch milky_way on
+@end example
+
+@cindex colour
+@kwindex color
+
+Maybe you want to use the map in a book that is supposed to be printed
+in black and white.  Then the current colour scheme is disadvantageous.
+The following lines redefine it:
+
+@smallexample
+color nebulae                 0    0    0
+color background              1    1    1
+color grid                    0.5  0.5  0.5
+color ecliptic                0.3  0.3  0.3
+color constellation_lines     0.7  0.7  0.7
+color labels                  0    0    0
+color boundaries              0.8  0.8  0.8
+color highlighted_boundaries  0    0    0
+color milky_way               0.5  0.5  0.5
+@end smallexample
+
+@noindent
+Colours are given as red--green--blue values, for further information
+see @ref{Colours}.  With these redefinitions, all elements on the map
+are printed either in black or in shades of grey.
+
+@cindex spectral class
+@cindex B@minus{}V brightness
+@cindex colour of stars
+@kwindex stars
+@kwindex colored_stars
+
+A special problem are stars.  With
+
+@example
+color stars 0 0 0
+@end example
+
+@noindent
+stars are printed in black colour, one could think.  But this is not
+always true.  By default, stars get their `real' colour according to
+their B@minus{}V brightness.  For example, Saiph in Orion is a little
+bit blue, while Antares in Scorpius is known to be red.  Therefore
+@PPTHREE{} ignores any `@code{color}' directive for stars, unless you
+also say
+
+@example
+switch colored_stars off
+@end example
+
+@cindex constellation, highlighted
+@cindex highlighted constellation
+@kwindex constellation
+
+Last but not least you should change the @emph{highlighted
+constellation}.  By default, it's Orion.  But we want to highlight the
+Swan, so we say
+
+@example
+set constellation CYG
+@end example
+
+@noindent
+because ``Cyg'' is the astronomical abbreviation of the Swan (``Cygnus''
+in Latin).  Highlighting means that its borderline gets another colour.
+
+This is the map that results from all this (I removed the Milky Way from
+this figure in order to keep the @acronym{PDF} manual small):
+
+@image{swan,10cm,,Constellation map of the Swan}
+
+
+@node Dimensions and scale
+@section Dimensions and scale
+@cindex size of the map
+@cindex dimensions of the map
+@cindex width
+@cindex height
+
+When you include a map in a text of yours, usually you can scale the
+graphics to fit your needs.  The exact procedure depends on the program
+you use of course.  Such additional scaling is helpful, but actually it
+should be superfluous since @PPTHREE{} can deliver the map with the
+desired size.
+
+@kwindex box_width
+@kwindex box_height
+@kwindex grad_per_cm
+
+The parameters
+
+@example
+set box_width 10
+set box_height 5
+@end example
+
+@noindent
+set the width of the map to 15@dmn{cm} and the height to 10@dmn{cm}.
+(By the way, all dimensions are given in centimetres in @PPTHREE{}.)
+The only thing that's still missing is the scale of the map.  It is set
+with
+
+@example
+set grad_per_cm 6
+@end example
+
+@cindex map projection
+@cindex projection
+@cindex azimuthal projection
+@cindex equidistant azimuthal projection
+
+@noindent
+which sets it to 6 degrees per centimetre.  With the current projection
+method@footnote{the equidistant azimuthal projection}, the given scale
+is only exactly true for the centre of the map.  Towards the rim there
+is a slight magnification (and distortion).
+
+
+@node Parameters and commands
+@section Parameters and Commands
+@cindex parameters
+@cindex commands
+@kwindex objects_and_labels
+
+Every @PPTHREE{} file can contain @emph{parameters} and
+@emph{commands}.  So far, we've had parameters only.  Both types of
+keywords must be neatly separated in the input script.  First come the
+parameters, then the special keyword
+
+@example
+objects_and_labels
+@end example
+
+@noindent
+and then the commands.  The purpose of the commands is adding and
+deleting objects and their labels, to reposition the labels, and to add
+arbitrary text on the map.  You can also change the contents of
+automatically generated labels.
+
+
+@node Labels
+@section Labels
+
+My personal experience is that the most difficult part of writing input
+scripts is to fiddle about with labels.  Although @PPTHREE{} does most
+of the labelling work on its own, it is not perfect (yet).  Thus you
+will value the features described in this section.
+
+@menu
+* Changing label texts::        Set another text for a certain label.
+* Deleting and adding labels::  Delete or add implicitly created labels.
+* Reposition labels::           Reposition a text label.
+* Text labels::                 How to put arbitrary text on the map.
+* Using flexes::                Labels that are curved.
+* Tic labels::                  Automatically generated tic mark labels.
+@end menu
+
+Please note how the texts themselves must be given: Either they don't
+contain any spaces or line breaks.  Then you can just enter them.  But
+if they do contain such white space, you must enclose them with
+quotes@tie{}@code{"..."}.  For example, you say
+
+@example
+set_label_text HD 128620 Toliman
+@end example
+
+@noindent
+but
+
+@example
+set_label_text HD 128620 "Rigil Kent"
+@end example
+
+If you (must) use quotes, and only then, you have to enter two symbols
+in a special way, namely the backslash@tie{}@samp{\} and the
+quotes@tie{}@samp{"}:
+
+@example
+set_label_text HD 128620 "\\footnotesize Toliman"
+@end example
+
+@noindent
+prints @samp{Toliman} with small letters, see @ref{LaTeX in labels}.
+Quotes must be entered as @samp{\"}.
+
+
+@node Changing label texts
+@subsection Changing label texts
+@cindex labels
+@kwindex set_label_text
+
+I change the label for Deneb, the alpha star in the Swan.  At the
+moment, its label is a simple `@math{\alpha}'.  But Deneb has a real
+name, and with
+
+@example
+set_label_text CYG 50 Deneb
+@end example
+
+@noindent
+I change the label text to ``Deneb''.  This `@code{CYG 50}' is the
+astronomical name for Deneb, see @ref{Denoting stars}.
+
+You can use that also for changing the label for a nebula:
+
+@example
+set_label_text NGC 7000 "N. America Neb."
+@end example
+
+@noindent
+As said, please note that you have to enclose the label text in
+quotation marks if it contains spaces.
+
+Now we get (only the changed part printed):
+
+@image{swan1,,,Map of North America Nebula and Deneb}
+
+@PPTHREE{} takes star names from a file.  @PPTHREE{}'s standard file
+contains only the astronomical symbols for the stars (Bayer's Greek
+letters and Flamsteed numbers), so if you want to have real star names,
+you must use `@code{set_text_label}' as above.  Or you use another star
+data file with @PPTHREE{}, see @ref{Stars data file}.
+
+
+@node Deleting and adding labels
+@subsection Deleting and adding labels
+
+@PPTHREE{} decides which labels are printed on the map by itself.  But,
+of course, you can configure this behaviour, and you can delete or add
+any label.
+
+For example, the command
+
+@example
+delete_labels NGC 884  NGC 869  TAU 27 ;
+@end example
+
+@noindent
+deletes the labels for the nebulae @acronym{NGC}@s{}884 and
+@acronym{NGC}@s{}869, and for the star 27@s{}Tau from the map.  The
+nebulae and the star themselves remain on it of course.
+Correspondingly,
+
+@example
+add_labels CNC 65  CNC 47  CNC 43  CNC 48 ;
+@end example
+
+@noindent
+adds the currently set labels texts for the stars 65, 47, 43, and
+48@s{}Cnc.  All of them are too faint to get their labels implicitly.
+
+But you can also influence labels globally in the parameters section of
+the input script.  If you don't want to have any labels at all, simply
+say
+
+@example
+switch labels off
+@end example
+
+@noindent
+in the parameters section.  Another parameter keyword is
+
+@example
+set faintest_star_with_label_magnitude 2.0
+@end example
+
+@noindent
+which means that only stars of brightness of at least 2.0@dmn{m} get an
+implicit (automatic) label.
+
+@node Reposition labels
+@subsection Reposition labels
+@cindex reposition labels
+@cindex labels, repositioning
+@kwindex reposition
+@kwindex at
+@kwindex towards
+
+If you think that @PPTHREE{} mispositioned a label you can change that
+with `@code{reposition}':
+
+@example
+reposition M 39  S ;
+@end example
+
+@noindent
+This puts the label for the nebula M@s{}39 @emph{below} the nebula.
+`@code{S}'@tie{}means `south'.  The following table shows all possible
+values, however you know it by and large from the windrose probably:
+
+@cindex windrose
+
+@table @samp
+@item E
+prints the label to the right.
+
+@item NE
+prints the label to the upper right.
+
+@item N
+prints the label to the top.
+
+@item NW
+prints the label to the upper left.
+
+@item W
+prints the label to the left.
+
+@item SW
+prints the label to the lower left.
+
+@item S
+prints the label to the bottom.
+
+@item SE
+prints the label to the lower right.
+
+@end table
+
+@noindent
+(@xref{The keyword `towards'}, for a figure visualising these
+abbreviations.  But be careful since this figure is actually intended
+for the @samp{towards} keyword.)
+
+Using `@code{reposition}' is also necessary if @PPTHREE{} has suppressed
+a label because it hadn't found a good place for it.
+`@code{reposition}' forces a label to be printed.
+
+
+@node Text labels
+@subsection Text labels
+@cindex text labels
+@cindex labels
+
+Changing existing labels is a nice thing to do, however sometimes you
+want to add arbitrary text on the map, e.@s{}g.@: `Pleiades' or `Virgo
+galaxy cluster'.  For all user defined text there is the keyword
+`@code{text}'.  For example,
+
+@example
+text "Virgo galaxy cluster" at 12.7 10
+  color 0.0 0.0 0.9333 towards SE ;
+@end example
+
+@noindent
+This places the text `Virgo galaxy cluster' at the celestial coordinates
+12.7@dmn{h} rectascension and @math{+10^\circ} declination in blue
+colour.  @xref{Colours}, for how to denote colours in @PPTHREE{}.
+
+@menu
+* The keyword `towards'::       Setting the labels' relative position.
+@end menu
+
+
+@node The keyword `towards'
+@subsubheading The keyword `@code{towards}'
+@kwindex towards
+@cindex windrose
+
+In a text label, after the keyword @samp{towards}, you can say in which
+direction, seen from the celestial coordinates given after the @samp{at}
+keyword, the label should be printed.  The following figure illustrates
+the ten possible values after @samp{towards}:
+
+@image{pp3rose,,,Possible values for `reposition' and `towards'}
+
+@ifinfo
+@noindent
+The `X' marks the spot that lies @emph{exactly} on the celestial
+coordinates given after the `@code{at}' keyword.  Actually there are two
+other possible values, namely `@code{W_}' and `@code{E_}' that can be
+seen only in the printed or HTML version of this manual.  They are like
+`@code{W}' and `@code{E}' except that the X lies on the text baseline
+rather than the centre of the vertical edge.
+@end ifinfo
+
+@ifnotinfo
+@noindent
+The red point marks the spot that lies @emph{exactly} on the celestial
+coordinates given after the `@code{at}' keyword.
+@end ifnotinfo
+
+The default value for @samp{towards} is @code{NE}, so if you don't use
+@samp{towards}, @PPTHREE{} places the text label to the upper right.  In
+particular, @PPTHREE{} does not perform any algorithm for finding the
+best position for the label as it does with automatically generated
+labels.
+
+For some nice tricks with text lables and @samp{towards}, see @ref{LaTeX
+in labels}.
+
+
+@node Using flexes
+@subsection Using flexes
+@cindex flex labels
+
+But the `@code{text}' keyword can do more.  When you include the
+keywords `@code{along declination}' the label becomes a @emph{flex}.
+This is printed along a declination circle as a curved text.  It's
+especially nice for constellation names.  So let's try it out:
+
+@example
+text "\\bfseries Swan" at 20.05 49.8 along declination towards SW ;
+@end example
+
+@noindent
+This `@code{\\bfseries}' tells the typesetter to print it in @b{bold
+face}, see @ref{LaTeX in labels}.  The result is the following:
+
+@image{swan2,,,Map of Swan with a flex label}
+
+
+@node Tic labels
+@subsection Tic mark labels
+@cindex tic mark labels
+
+But `@code{text}' can do even more.  With
+
+@example
+text "$#3$" at 0 20 along declination
+            tics rectascension 1 towards N ;
+text "$#5$" at 11 0 along declination
+            tics declination 10 towards S ;
+@end example
+
+@noindent
+you create automatic tic mark labels at the @math{+20^\circ} declination
+circle and the 11@dmn{h} rectascension circle.  @xref{Tic mark labels},
+for more information about these placeholders like@tie{}@code{#3}.
+Typically you will embed the placeholders in @code{$...$}, because this
+tells the underlying @TeX{} typesetting engine to typeset the number as
+a formula.  This makes it look nicer.
+
+
+@node Deleting and adding objects
+@section Deleting and adding stars and nebulae
+@kwindex add
+@kwindex delete
+
+Sometimes you have to remove stars or nebulae from the map, especially
+because they collide with other objects.  If you've already read how to
+change labels, this is very straightforward.  You remove sky objects
+with `@code{delete}' and add them with `@code{add}'.  Both commands take
+a list of objects that is ended with a semicolon@tie{}@samp{;}:
+
+@example
+delete LEO 63  HD 97605 ;
+add NGC 6992 ;
+@end example
+
+@noindent
+The `@code{add}' command is useful mostly for nebulae, because by
+default, @PPTHREE{} only includes all objects of the Messier catalogue,
+but only other objects with a minimal brightness, see @ref{Filtering by
+brightness}.
+
+
+@node Penalty scheme
+@section Penalty scheme
+
+It is a tricky task to place labels on a dotty star map without creating
+to many overlaps, and especially overlaps with other labels are very
+annoying.  Therefore @PPTHREE{} tries to avoid that.
+
+It does so by using a penalty algorithm: It tests the eight windrose
+positions around the respective object, and calculates the resulting
+overlaps for each position.  The overlaps are counted as
+@emph{penalties}.  The position with the smallest penalty value is
+chosen.  In very bad cases when the penalties exceed a certain
+threshold, the label is not printed at all.
+
+All of this can be overruled by the user, but normally the standard
+behaviour is good enough.  So read this section only if you are really
+keen to know how it works.
+
+@menu
+* Basics about penalties::      How PP3 calculates penalties.
+* The rim::                     Avoiding objects coming too close to
+                                  labels.
+* Overlaps with line objects::  Labels coming close to boundaries and
+                                  constellation lines.
+* Penalty threshold::           When automatic labels are suppressed.
+@end menu
+
+
+@node Basics about penalties
+@subsection Basics about penalties
+@cindex penalties
+
+@PPTHREE{} calculates overlaps with all objects on the map: stars,
+nebulae, constellation lines, boundary lines, and -- last but not least
+-- other labels.  All overlaps are weighted, and their sum is the
+penalty value.  You can influence the weighting.  By default, it's
+@samp{1000} for all objects.  But with
+
+@example
+penalties stars 2000
+@end example
+
+@noindent
+you double the significance of stars.  Thus you make overlaps of labels
+with stars less probable.  In contrast,
+
+@example
+penalties boundaries 0
+@end example
+
+@noindent
+tells @PPTHREE{} that printing a label on a boundary line isn't bad at
+all.@footnote{Avoid negative values, although @PPTHREE{} doesn't reject
+them.  They wouldn't make sense anyway.}
+
+
+@node The rim
+@subsection The rim
+@cindex rim
+@cindex core
+@kwindex rim
+
+Each label has a @emph{core area}, which is the text area itself, and a
+@emph{rim}, which is an area around the text area.  Both are rectangles,
+separated by a @emph{skip} that is the same as the one that separates
+labels and their respective celestial object, see @ref{Other layout
+parameters}.
+
+@image{betelg,,,Diagram of core and rim of a label}
+
+@PPTHREE{} takes both rim and core into account.  The relative
+significance of the rim can be set with e.@s{}g.@:
+
+@example
+penalties rim 2000
+@end example
+
+@noindent
+which doubles the default value of @samp{1000}.  With
+
+@example
+penalties rim 0
+@end example
+
+@noindent
+the rim loses its effect completely.  Notice that @PPTHREE{} adds rim
+penalties also for the whole core area, so that the core is always more
+significant than the rim, no matter how you set the penalty values.
+
+What's the point in the rim?  The core avoids overlaps, but the rim is
+supposed to make @emph{approximations} of labels with other things on
+the map less probable.
+
+You may have noticed that the rim overlaps with the object (star or
+nebula) itself.  Usually this only adds some sort of bias to the penalty
+values of the diagonal positions, but this direct contact is
+particularly useful for double stars: There both components get
+``their'' label on ``their'' side due to the small rim overlaps with the
+respectively other component.
+
+
+@node Overlaps with line objects
+@subsection Overlaps with line objects
+
+``Line objects'' means constellation lines and boundary lines.
+@PPTHREE{} treats both of them in a special way: When they collide with
+the @emph{rim} of a label, it's less bad than for non-line objects.  The
+reason is that lines are so different from labels visually, that it's
+not fatal if they are rather close together.
+
+The two new penalties that are used for the rim are
+@samp{constellation_lines_rim} and @samp{boundaries_rim}.  Their default
+value is @samp{1000} as usual.  For example, with
+
+@example
+penalties boundaries_rim 0
+@end example
+
+@noindent
+you tell @PPTHREE{} that a label directly next to a boundary line is
+totally okay for you.
+
+
+@node Penalty threshold
+@subsection Penalty threshold
+
+Sometimes a certain region of the map is so much crowded with stars,
+nebulae, labels, and more, that there simply is no space left for yet
+another label.  In this case the penalty value reaches a very high
+number.  If it exceeds a given threshold, @PPTHREE{} suppresses that
+label.  You can still override this, see @ref{Reposition labels}.
+
+You can set this threshold with
+
+@example
+penalties threshold 3000
+@end example
+
+@noindent
+Again, @samp{1000} is the default value.
+
+
+@node Keywords reference
+@chapter Keywords reference
+@cindex keywords
+
+On @uref{http://sourceforge.net/projects/pp3,@PPTHREE{}'s project page}
+you can download a neat reference card.  If you fold it twice it is a
+handy zigzag.
+
+@menu
+* General structure::           The outline of a PP3 input script.
+* Parameters::                  First part:  parameters.
+* Commands::                    Second part: stars, nebulae and labels.
+@end menu
+
+
+@node General structure
+@section General structure
+@cindex example input script
+
+The outline of a @PPTHREE{} input script is:
+
+@example
+# Some introductory comments,
+# i.e. what the file is about to do.
+
+@var{Section I: Parameters: Output format and global style.}
+
+objects_and_labels
+
+@var{Section II: Commands: Delete/add/modify objects and/or labels}
+@end example
+
+
+@node Parameters
+@section Setting Parameters
+@cindex parameters
+
+All keyword here are @emph{parameters}.  This means that they are
+allowed only in the @emph{first} part of an input script, i.@s{}e.@:
+before the @code{objects_and_labels} command (if there is one).
+
+@menu
+* Essential parameters::        What probably all your input scripts
+                                  will need.
+* Switching things on or off::  How to remove e.g. all nebulae easily.
+* Filtering by brightness::     Removing too faint objects.
+* Colour and line style and other layout::  Miscellaneous layout.
+* Implementing a global style::  Global PP3 file and LaTeX preamble.
+* Penalties::                   Finetune the overlap avoiding
+                                  algorithm.
+* Filenames::                   Setting filenames for database files.
+@end menu
+
+
+@node Essential parameters
+@subsection Essential parameters
+
+@menu
+* View control::                Map view, scale, and size.
+* Output control::              Output filename and file format.
+* Highlighted constellation::   Highlight one constellation.
+@end menu
+
+
+@node View control
+@subsubsection Map view, scale, and size
+@kwindex set
+
+@deffn Parameter {set center_rectascension} rectascension
+@kwindex center_rectascension
+@deffnx Parameter {set center_declination} declination
+@kwindex center_declination
+Set the rectascension and declination of the centre of the map to
+@var{rectascension} (in hours) and @var{declination} (in degrees)
+respectively.
+
+Defaults: 5.8 (@var{rectascension}), 0.0 (@var{declination})
+@end deffn
+
+
+@deffn Parameter {set box_width} width
+@kwindex box_width
+@deffnx Parameter {set box_height} height
+@kwindex box_height
+Set the width and height of the resulting map to @var{width} and
+@var{height} (in centimetres) respectively.
+
+Defaults: 15 (@var{width}), 15 (@var{height})
+@end deffn
+
+
+@deffn Parameter {set grad_per_cm} scale
+@kwindex grad_per_cm
+Set the scale of the resulting map to @var{scale} (in degrees per
+centimetre).
+
+Default: 4.0
+@end deffn
+
+
+@node Output control
+@subsubsection Setting what file should be created
+@kwindex switch
+@kwindex filename
+
+@deffn Parameter {filename output} filename
+@kwindex output
+The resulting map will be written to the file @var{filename} in @LaTeX{}
+format.  It must have the file extension @file{.tex}.  If @var{filename}
+is empty the map will be written to standard out.
+
+Default: @code{""} (empty)
+@end deffn
+
+
+@deffn Parameter {switch eps_output} on/off
+@kwindex eps_output
+If on, @PPTHREE{} creates a @acronym{PDF} file.  (Additionally to the
+@LaTeX{} and @acronym{EPS} files that you then can ignore.)
+
+Default: off
+@end deffn
+
+
+@deffn Parameter {switch pdf_output} on/off
+@kwindex pdf_output
+If on, @PPTHREE{} creates an @acronym{EPS} file.  (Additionally to the
+@LaTeX{} file that you then can ignore.)
+
+Default: off
+@end deffn
+
+
+@node Highlighted constellation
+@subsubsection The highlighted constellation
+@kwindex set
+
+@deffn Parameter {set constellation} abbreviation
+@kwindex constellation
+Highlight the constellation that is given by @var{abbreviation} (given
+with all-uppercase letters).  If you don't want to hightlight anything,
+set it to @code{""} or to an invalid abbreviation.
+
+At the moment, highlighting means that the boundaries of the respective
+constellation get another colour, see @ref{Colours}.
+
+Default: @code{ORI}
+@end deffn
+
+
+@node Switching things on or off
+@subsection Switching things on or off
+@kwindex switch
+
+@deffn Parameter {switch milky_way} on/off
+@kwindex milky_way
+@deffnx Parameter {switch nebulae} on/off
+@kwindex nebulae
+@deffnx Parameter {switch grid} on/off
+@kwindex grid
+@deffnx Parameter {switch ecliptic} on/off
+@kwindex ecliptic
+@deffnx Parameter {switch boundaries} on/off
+@kwindex boundaries
+@deffnx Parameter {switch constellation_lines} on/off
+@kwindex constellation_lines
+@deffnx Parameter {switch labels} on/off
+@kwindex labels
+Print or don't print the respective (class of) object(s) on the map.
+`Grid' means the coordinate grid, `boundaries' are the borderlines of
+the constellations, and `constellation lines' denote the lines between
+the brightest stars that are supposed to help to see the shape of a
+constellation.
+
+Defaults: off (Milky Way), on (all others)
+@end deffn
+
+
+@deffn Parameter {switch colored_stars} on/off
+@kwindex colored_stars
+If switched on, all stars get a colour that represents their real colour
+according to their spectral class.  This may be unsuitable on a bright
+background since most stars are pretty white.
+
+If switched off, all stars get the colour given by `@code{color stars}',
+see @ref{Colours}.
+
+Default: on
+@end deffn
+
+
+@node Filtering by brightness
+@subsection Filtering stars and nebulae by their brightness
+@kwindex set
+
+@deffn Parameter {set faintest_cluster_magnitude} magnitude
+@kwindex faintest_cluster_magnitude
+Don't print open star clusters that are fainter than @var{magnitude}.
+
+Default: 4.0
+@end deffn
+
+
+@deffn Parameter {set faintest_diffuse_nebula_magnitude} magnitude
+@kwindex faintest_diffuse_nebula_magnitude
+Don't print nebulae that are fainter than @var{magnitude}.  In this
+case, `nebulae' is meant in the narrower sense, i.@s{}e.@: no stellar
+clusters.
+
+Default: 8.0
+@end deffn
+
+
+@deffn Parameter {set faintest_star_magnitude} magnitude
+@kwindex faintest_star_magnitude
+Don't print stars that are fainter than @var{magnitude}.
+
+Default: 7.0
+@end deffn
+
+
+@deffn Parameter {set faintest_star_with_label_magnitude} magnitude
+@kwindex faintest_star_with_label_magnitude
+Only stars that have a brightness of at least @var{magnitude} get an
+automatically generated label.
+
+Default: 3.7
+@end deffn
+
+
+@deffn Parameter {set faintest_star_disk_magnitude} magnitude
+@kwindex faintest_star_disk_magnitude
+Only stars that have a brightness of at least @var{magnitude} will be
+printed as more than just dots.
+
+Default: 4.5
+@end deffn
+
+
+@deffn Parameter {set minimal_star_radius} radius
+@kwindex minimal_star_radius
+Set the @var{radius} (in centimetres) of the dots that are used for the
+faintest stars.
+
+Default: 0.015
+@end deffn
+
+
+@node Colour and line style and other layout
+@subsection Colour, line style, and other layout
+
+@menu
+* Colours::                     How to change colour.
+* Line styles and widths::      How to change lines appearance.
+* Other layout parameters::     Miscellaneous stuff.
+@end menu
+
+
+@node Colours
+@subsubsection Colours
+@cindex colour
+@kwindex color
+
+In @PPTHREE{}, colours are given by their red--green--blue values (also
+called the @acronym{RGB} colour scheme).  Every value is between 0
+and@tie{}1.  For example, `@code{1 0 0}' is red, `@code{0 0 1}' is blue,
+`@code{0 0 0}' is black and `@code{1 1 1}' is white.
+
+For shades of grey all three values must be the same.  So a medium grey
+is `@code{0.5 0.5 0.5}'.  For further examples have a look at the
+following default values.
+
+@deffn Parameter {color background} red green blue
+@kwindex background
+Set the background colour of the map to the given colour.
+
+Default: 0 @ 0 @ 0.4 @ (dark blue)
+@end deffn
+
+
+@deffn Parameter {color grid} red green blue
+@kwindex grid
+Set the coordinate grid colour to the given colour.
+
+Default: 0 @ 0.298 @ 0.447 @ (dark blue-grey)
+@end deffn
+
+
+@deffn Parameter {color ecliptic} red green blue
+@kwindex ecliptic
+Set the ecliptic line colour to the given colour.
+
+Default: 1 @ 0 @ 0 @ (red)
+@end deffn
+
+
+@deffn Parameter {color boundaries} red green blue
+@kwindex boundaries
+Set the ordinary constellation boundaries colour to the given colour.
+
+Default: 0.5 @ 0.5 @ 0 @ (dark yellow)
+@end deffn
+
+
+@deffn Parameter {color highlighted_boundaries} red green blue
+@kwindex highlighted_boundaries
+Set the highlighted constellation boundaries colour to the given colour.
+See @ref{Highlighted constellation}.
+
+Default: 1 @ 1 @ 0 @ (yellow)
+@end deffn
+
+
+@deffn Parameter {color constellation_lines} red green blue
+@kwindex constellation_lines
+Set the constellation lines colour to the given colour.
+
+Default: 0 @ 1 @ 0 @ (green)
+@end deffn
+
+
+@deffn Parameter {color milky_way} red green blue
+@kwindex milky_way
+The Milky Way is printed in shades of different colour, representing its
+brightness.  The darkest areas of the Milky Way get the background
+colour, and the brightest the colour that you give here.
+
+The Milky way must be switched on of course in order to savour it, which
+is not the case by default, see @ref{Switching things on or off}.
+
+Default: 0 @ 0 @ 1 @ (blue)
+@end deffn
+
+
+@deffn Parameter {color nebulae} red green blue
+@kwindex nebulae
+Set the colour of the nebulae circles to the given colour.
+
+Default: 1 @ 1 @ 1 @ (white)
+@end deffn
+
+
+@deffn Parameter {color stars} red green blue
+@kwindex stars
+Set the colour of all stars to the given colour.  Please note that this
+only has effect if the switch `@code{colored_stars}' is off, see
+@ref{Switching things on or off}.
+
+Default: 1 @ 1 @ 1 @ (white)
+@end deffn
+
+
+@deffn Parameter {color labels} red green blue
+@kwindex labels
+Set the colour of automatically generated labels to the given colour.
+
+Default: 0 @ 1 @ 1 @ (cyan)
+@end deffn
+
+
+@deffn Parameter {color text_labels} red green blue
+@kwindex text_labels
+Set the colour of user defined labels to the given colour.
+
+Default: 1 @ 1 @ 0 @ (yellow)
+@end deffn
+
+
+@node Line styles and widths
+@subsubsection Line styles and widths
+@kwindex line_style
+
+@deffn Parameter {line_style grid} style
+@kwindex grid
+@deffnx Parameter {line_style ecliptic} style
+@kwindex ecliptic
+@deffnx Parameter {line_style boundaries} style
+@kwindex boundaries
+@deffnx Parameter {line_style highlighted_boundaries} style
+@kwindex highlighted_boundaries
+@deffnx Parameter {line_style nebulae} style
+@kwindex nebulae
+@deffnx Parameter {line_style constellation_lines} style
+@kwindex constellation_lines
+Set the line style of the respective object to @var{style}.  Possible
+values are @code{none}, @code{solid}, @code{dashed}, and @code{dotted}.
+
+Defaults: solid (grid, nebulae, constellation lines), dashed (ecliptic,
+boundaries)
+@end deffn
+
+@kwindex line_width
+
+@deffn Parameter {line_width grid} width
+@kwindex grid
+@deffnx Parameter {line_width ecliptic} width
+@kwindex ecliptic
+@deffnx Parameter {line_width nebulae} width
+@kwindex nebulae
+@deffnx Parameter {line_width boundaries} width
+@kwindex boundaries
+@deffnx Parameter {line_width highlighted_boundaries} width
+@kwindex highlighted_boundaries
+@deffnx Parameter {line_width constellation_lines} width
+@kwindex constellation_lines
+Set the line width of the respective object to @var{width} (in
+centimetres).
+
+Defaults: 0.025 (grid), 0.018 (ecliptic, nebulae), 0.035 (boundaries,
+constellation lines)
+@end deffn
+
+
+@node Other layout parameters
+@subsubsection Other layout parameters
+@kwindex set
+
+@deffn Parameter {set shortest_constellation_line} length
+@kwindex shortest_constellation_line
+Set the length of the shortest constellation line that is printed to
+@var{length} (in centimetres).  All constellation lines shorter than
+@var{length} are suppressed.
+
+Default: 0.1
+@end deffn
+
+
+@deffn Parameter {set label_skip} length
+@kwindex label_skip
+Set the distance between the outer rim of the celestial object and its
+label to @var{length} (in centimetres).
+
+Default: 0.06
+@end deffn
+
+
+@deffn Parameter {set minimal_nebula_radius} radius
+@kwindex minimal_nebula_radius
+All nebulae that would be smaller than @var{radius} centimetres are
+printed with a radius of exactly @var{radius}@dmn{cm}.
+
+Default: 0.1
+@end deffn
+
+
+@deffn Parameter {set star_scaling} factor
+@kwindex star_scaling
+Make all star circles @var{factor} times bigger than normal.
+
+Default: 1
+@end deffn
+
+
+@deffn Parameter {set fontsize} size
+@kwindex fontsize
+Set the default font size to @var{size}@dmn{pt}.  @var{size} may be 10,
+11, or@tie{}12.
+
+Default: 10
+@end deffn
+
+
+@node Implementing a global style
+@subsection Implementing a global style
+@kwindex filename
+
+@deffn Parameter {filename include} filename
+@kwindex include
+If non-empty, the file @var{filename} is interpreted as a @PPTHREE{}
+input script and read before the keywords in the current script are
+interpreted.  This enables you to enforce global style parameters and
+other commands for all maps in a set of maps.  The included script must
+not include yet another file.
+
+Please note that @PPTHREE{} looks for the included file in the current
+directory, and not in the directory where the main input script is.
+
+Default: @code{""} (empty)
+@end deffn
+
+
+@deffn Parameter {filename latex_preamble} filename
+@kwindex latex_preamble
+If non-empty, the contents of the file @var{filename} is included at an
+appropriate position in the resulting @LaTeX{} file.  This enables you
+to use arbitrary @LaTeX{} macros to customise the map, see @ref{LaTeX
+preamble}.
+
+Default: @code{""} (empty)
+@end deffn
+
+
+@node Penalties
+@subsection Penalties
+@kwindex penalties
+
+
+@deffn Parameter {penalties stars} penalties
+@kwindex stars
+@deffnx Parameter {penalties labels} penalties
+@kwindex labels
+@deffnx Parameter {penalties nebulae} penalties
+@kwindex nebulae
+@deffnx Parameter {penalties boundaries} penalties
+@kwindex boundaries
+@deffnx Parameter {penalties constellation_lines} penalties
+@kwindex constellation_lines
+Set the penalties for an overlap of a label with the respective object
+to @var{penalties}.
+
+Defaults: 1000 (all)
+@end deffn
+
+
+@deffn Parameter {penalties rim} penalties
+@kwindex rim
+Set the significance of an overlap with the label's rim relatively to
+the label's core to @var{penalties}.
+
+Note that the rim can never become more significant than the core,
+because the rim penalties add to the core penalties while calculating
+the core.
+
+Default: 1000
+@end deffn
+
+
+@deffn Parameter {penalties boundaries_rim} penalties
+@kwindex boundaries_rim
+@deffnx Parameter {penalties constellation_lines_rim} penalties
+@kwindex constellation_lines_rim
+Set the penalties for an overlap of the label's rim with the respective
+object to @var{penalties}.
+
+These two objects get their own rim penalties because approximation of a
+label with a line object is not so bad usually.
+
+Defaults: 1000 (all)
+@end deffn
+
+
+@deffn Parameter {penalties threshold} penalties
+@kwindex threshold
+If the penalties for a label exceed @var{penalties}, the label is
+suppressed.
+
+Default: 1000
+@end deffn
+
+
+@node Filenames
+@subsection Filenames
+@kwindex filename
+
+
+@deffn Parameter {filename stars} filename
+@kwindex stars
+@deffnx Parameter {filename nebulae} filename
+@kwindex nebulae
+@deffnx Parameter {filename label_dimensions} filename
+@kwindex label_dimensions
+@deffnx Parameter {filename constellation_lines} filename
+@kwindex constellation_lines
+@deffnx Parameter {filename boundaries} filename
+@kwindex boundaries
+@deffnx Parameter {filename milky_way} filename
+@kwindex milky_way
+This lets @PPTHREE{} look for the respective data in the given file.
+The filenames must be full paths from the current directory.
+
+Defaults: @file{stars.dat} (stars), @file{nebulae.dat} (nebulae),
+@file{labeldims.dat} (label dimensions), @file{lines.dat} (constellation
+lines), @file{boundaries.dat} (boundaries), @file{milkway.dat} (Milky
+Way)
+@end deffn
+
+
+@node Commands
+@section Setting or deleting celestial objects and their labels
+
+All keyword here are @emph{commands}.
+
+@deffn Command objects_and_labels
+@kwindex objects_and_labels
+This keyword splits the input script in two parts.  The first part must
+contain @emph{parameters} only, whereas the second contains
+@emph{commands} only.
+
+This keyword must occur either once or never in a @PPTHREE{} input
+script.  If never, the whole script consists of parameters.
+@end deffn
+
+@menu
+* Changing sky objects::        Adding and deleting stars and nebulae.
+* Changing labels::             Add, delete, or reposition labels, or
+                                  change their text.
+* Arbitrary text::              How to place arbitrary text on the map.
+@end menu
+
+
+@node Changing sky objects
+@subsection Adding and deleting stars and nebulae
+
+@deffn Command add objects @dots{} @code{;}
+@kwindex add
+Add the @var{objects} to the map, even if @PPTHREE{}'s implicit
+behaviour would have excluded them.  This is sensible for nebulae
+mostly.
+@end deffn
+
+
+@deffn Command delete objects @dots{} @code{;}
+@kwindex delete
+@end deffn
+
+
+@node Changing labels
+@subsection How to add, delete, and reposition labels
+
+@deffn Command add_labels objects @dots{} @code{;}
+@kwindex add_labels
+@end deffn
+
+
+@deffn Command delete_labels objects @dots{} @code{;}
+@kwindex delete_labels
+@end deffn
+
+
+@deffn Command reposition object @code{towards} direction @code{;}
+@kwindex reposition
+@kwindex towards
+@end deffn
+
+
+@deffn Command set_label_text object @code{"}{label-text}@code{"}
+@kwindex set_label_text
+@end deffn
+
+
+@node Arbitrary text
+@subsection How to place text on the map
+
+@deffn Command text {label-text} @code{at} rectascension declination [@code{color} red green blue] [@code{towards} direction] @code{;}
+@kwindex text
+@kwindex at
+@kwindex color
+@kwindex towards
+@end deffn
+
+All user defines texts on the map are generated with the keyword
+`@code{text}'.  However there are two sub-variants, namely @emph{flexes}
+and @emph{tic mark labels}.  Note that they can have the @code{color}
+and @code{towards} keywords as well.
+
+@menu
+* Flexes::                      Labels on a declination circle.
+* Tic mark labels::             Labels for the coordinate grid.
+@end menu
+
+
+@node Flexes
+@subsubsection Flexes
+@cindex flex labels
+
+@deffn Command text {label-text} @code{at} rectascension declination @code{along declination} @code{;}
+Create a flex label at the given coordinates.  A flex label follows the
+respective declination circle.
+@end deffn
+
+@noindent
+For further options see @ref{Arbitrary text}.
+
+
+@node Tic mark labels
+@subsubsection Tic mark labels
+@cindex tic mark labels
+
+@deffn Command text {label-text} @code{at} rectascension declination @code{tics} (@code{rectascension} | @code{declination}) step @code{;}
+@end deffn
+
+@noindent
+With the keyword @code{rectascension}, one rectascension circle gets tic
+marks, analogously with @code{declination}.  The celestial position
+after `@code{at}' denotes the starting point of the labelling, and
+@var{step} is the step skip (in hours or degrees respectively) for the
+subsequent tic mark labels.
+
+The label should contain one of the following special expressions:
+
+@table @code
+@item #1
+Rectascension in hours.
+
+@item #2
+Declination in degrees.
+
+@item #3
+Rectascension in integer hours (truncated, not rounded).
+
+@item #4
+Rectascension fraction of hour in minutes (truncated, not rounded).
+
+@item #5
+Declination in rounded integer degrees.
+
+@end table
+
+For further options see @ref{Arbitrary text}.  Tic mark labels can also
+be flexes, see @ref{Flexes}.
+
+
+@node PP3 and LaTeX
+@chapter PP3 and @LaTeX{}
+@cindex @LaTeX{}
+
+We're entering now the phase of sophistication.  Here you learn how to
+customise the graphical appearance of all text on your sky map almost
+arbitrarily.  You also learn how to achieve special text effects using
+the @LaTeX{} language.
+
+I can't explain @LaTeX{} itself though.  So I must assume that you've
+been taught the basics elsewhere.  On the other hand, the @LaTeX{}
+snippets that I will give in this chapter may be enough for many
+purposes.
+
+It is @emph{not} necessary to use the features described here, so it's
+still true that you needn't know about @LaTeX{} in order to use
+@PPTHREE{}.  However if you want to have full control, @LaTeX{}
+competence is unavoidable.
+
+@menu
+* LaTeX in labels::             Using LaTeX in labels.
+* LaTeX preamble::              Total style freedom with LaTeX.
+* LaTeX hooks::                 Changing label style globally.
+@end menu
+
+
+@node LaTeX in labels
+@section Using @LaTeX{} in labels
+@cindex PSTricks
+@kwindex text
+@cindex labels with @LaTeX{}
+
+You can use all @LaTeX{} macros in @PPTHREE{} labels that are allowed in
+horizontal boxes (like @samp{\mbox@{...@}}).  Additionally, you can use
+many commands from the @uref{http://www.pstricks.de/docs.phtml,PSTricks
+package}.
+
+The most important pitfall is the backslash@tie{}@samp{\}, because when
+using quotes as string delimiters, you have to write is as `@code{\\}'.
+
+@cindex \small (@LaTeX{})
+@cindex \hskip (@LaTeX{})
+@cindex \psdots (PSTricks)
+@cindex dotstyle (PSTricks)
+@cindex dotangle (PSTricks)
+@kwindex towards
+
+Let's have a look at a more complex example:
+
+@example
+text "\\small Wolf 359\\hskip0.3em
+      \\psdots[dotstyle=+,dotangle=45](0,0)"
+     at 10.902 7.32 color 0.3 0.3 0.9333 towards W_ ;
+@end example
+
+@noindent
+This prints an @xmarksthespot{} at the position of the star
+Wolf@tie{}359 and prints the label `Wolf@tie{}359' at the top left next
+to it:
+
+@image{leo1,,,Constellation map Wolf 359 in Leo}
+
+@noindent
+The row of @LaTeX{} macros consists of the following elements:
+
+@table @code
+@item \small
+This prints the whole label in a small typeface.  Please note that such
+commands only apply to the current label, since the label will be
+typeset within a box.  In effect, the next label will be big again,
+unless you say `@code{\small}' there, too.
+
+@item \hskip0.3em
+This adds a horizontal skip at its position.  Its width is 0.3@dmn{em},
+where `em' is the width of the letter@tie{}`M'@.  In this case, it
+creates a little bit of space between the `Wolf@tie{}359' and
+the@tie{}@xmarksthespot{}.
+
+@item \psdots[dotstyle=+,dotangle=45](0,0)
+This is a PSTricks command.  Normally it prints a dot at the current
+position on the text baseline.  However the `@code{dotstyle=+}' option
+makes it a@tie{}`@math{+}', and the `@code{dotangle=45}' option turns it
+by 45@tie{}degree, which makes it an@tie{}@xmarksthespot{} effectively.
+
+The clever bit is the fact that this macro is the very last one in the
+row.  Since it says `@code{towards W_}' (towards left, on baseline) in
+the @PPTHREE{} command, this means that the@tie{}@xmarksthespot{} lies
+@emph{exactly} on the celestial coordinates given after the `@code{at}'
+option.
+@end table
+
+
+@node LaTeX preamble
+@section @LaTeX{} preamble
+@cindex @LaTeX{} preamble
+@cindex preamble, @LaTeX{}
+
+Providing a @LaTeX{} preamble is the most elegant, mighty, but also --
+if you know @LaTeX{} -- the easiest way to adjust the map layout
+according to your taste and needs.  There is a default preamble that
+defines the standard map layout.  This you can override in a user
+preamble as much as you want.
+
+@menu
+* Default preamble::            Hooks and fonts if you don't change
+                                  anything.
+* User preamble::               Applying your own hooks, fonts, and
+                                  other style.
+@end menu
+
+
+@node Default preamble
+@subsection Default preamble
+@cindex @LaTeX{} preamble, default
+@cindex preamble, @LaTeX{}, default
+
+By default, the @LaTeX{} document that @PPTHREE{} creates begins with
+
+@smallexample
+@r{01 @ @ }\documentclass[10pt]@{article@}
+@r{02 @ @ }
+@r{03 @ @ }\nofiles\usepackage[dvips]@{color@}
+@r{04 @ @ }\usepackage@{pstricks,pst-text@}
+@r{05 @ @ }\newcommand*@{\DP@}@{.@}
+@r{06 @ @ }\newcommand*@{\TicMark@}[1]@{#1@}
+@r{07 @ @ }\newcommand*@{\Label@}[1]@{#1@}
+@r{08 @ @ }\newcommand*@{\TextLabel@}[1]@{#1@}
+@r{09 @ @ }\newcommand*@{\FlexLabel@}[1]@{#1@}
+@r{10 @ @ }\newcommand*@{\Starname@}[1]@{#1@}
+@r{11 @ @ }\newcommand*@{\Messier@}[1]@{M\,#1@}
+@r{12 @ @ }\newcommand*@{\NGC@}[1]@{NGC\,#1@}
+@r{13 @ @ }\newcommand*@{\IC@}[1]@{IC\,#1@}
+@r{14 @ @ }
+@r{15 @ @ }\usepackage@{mathptmx@}
+@r{16 @ @ }\usepackage@{helvet@}
+@r{17 @ @ }\AtBeginDocument@{\sffamily@}
+@r{18 @ @ }
+@r{19 @ @ }@emph{[optional input of user provided file]}
+@end smallexample
+
+@emph{The above is not provided by you}, it is the @LaTeX{} code that
+@PPTHREE{} generates every time.  If you don't look at its @LaTeX{}
+output file, you never see it.  But it may be helpful to know what
+happens here, so let's skim through it line by line:
+
+@table @asis
+@item Line 1
+The @samp{10pt} in the first line defines the standard font size in
+points.  You can change that with the input script parameter
+
+@example
+set fontsize 12
+@end example
+
+@noindent
+which changes it to 12@dmn{pt}.  Possible values are @samp{10},
+@samp{11}, and @samp{12}.
+
+@item Lines 5--13
+All the so-called hooks of @PPTHREE{}, see @ref{LaTeX hooks}.
+
+@item Lines 15--17
+They set the standard font for @PPTHREE{}'s maps: The Helvetica for all
+the Latin letters, and the Symbol for all the Greek ones.
+
+@item Line 19
+Here your own preamble is included, if you have provided one.
+@end table
+
+
+@node User preamble
+@subsection User preamble
+@cindex @LaTeX{} preamble
+@cindex preamble, @LaTeX{}
+@cindex preamble, user provided
+@cindex user preamble
+
+You tell @PPTHREE{} where your own preamble is with the filename
+parameter `@code{latex_preamble}' in the input script, for example:
+
+@example
+filename latex_preamble mypreamble.tex
+@end example
+
+@noindent
+The file @file{mypreamble.tex} contains your @LaTeX{} preamble macros
+and must reside in the current directory, or in another directory where
+@TeX{} looks for its files.
+
+The following is the contents of the file @file{wiki.tex} of the
+@PPTHREE{} distribution.  It is the original user @LaTeX{} preamble that
+was used for the Wikipedia Project, see @ref{Successful use of PP3}.
+
+@smallexample
+@r{01 @ @ }\usepackage@{amsmath@}
+@r{02 @ @ }\usepackage[T1]@{fontenc@}
+@r{03 @ @ }\IfFileExists@{eulervm.sty@}@{\usepackage@{eulervm@}@}@{@}
+@r{04 @ @ }\usepackage@{relsize@}
+@r{05 @ @ }\IfFileExists@{t1pmy.fd@}@{
+@r{06 @ @ }  \renewcommand*@{\sfdefault@}@{pmy@}
+@r{07 @ @ }@}@{
+@r{08 @ @ }  \renewcommand*@{\sfdefault@}@{phv@}
+@r{09 @ @ }@}
+@r{10 @ @ }\renewcommand@{\Messier@}[1]@{\footnotesize@{\scriptsize M@}\,#1@}
+@r{11 @ @ }\renewcommand@{\NGC@}[1]@{\footnotesize@{\scriptsize NGC@}\,#1@}
+@r{12 @ @ }\renewcommand@{\IC@}[1]@{\footnotesize@{\scriptsize IC@}\,#1@}
+@r{13 @ @ }\renewcommand@{\FlexLabel@}[1]@{@{\bfseries #1@}@}
+@r{14 @ @ }\renewcommand@{\TicMark@}[1]@{@{\mdseries\scriptsize\mathversion@{normal@} #1@}@}
+@r{15 @ @ }\AtBeginDocument@{\sffamily\boldmath@}
+@end smallexample
+
+@noindent
+And this is what it does:
+
+@table @asis
+@item Line 1
+includes the AMSMath package which provides additional macros that can
+be useful in text labels.  You can include almost arbitrary @LaTeX{}
+packages.
+
+@item Line 2
+activates the so-called T1 font encoding.  It's not important to know
+what this means, but it is recommended and doesn't do any harm.
+
+@item Line 3
+activates nicer Greek letters.  Well, your taste may be different.  This
+@samp{\IfFileExists} thing tests whether the package is available on the
+current computer.  The package is included only if it exists.
+
+@item Line 4
+enables the macro @samp{\smaller} which can be very useful in text
+labels.  It reduces the current font size.  For example I can say
+
+@example
+set_label_text LEO 32 "\\smaller Regulus"
+@end example
+
+@item Lines 5--9
+test whether the font Myriad is available on the current computer, and
+if it does, it makes it the new standard sans-serif font.  Else it uses
+Helvetica for that.
+
+@item Lines 10--14
+re-defines various @LaTeX{} hooks in order to have nicer looking
+automatic labels, see @ref{LaTeX hooks}.
+
+@item Line 15
+switches to sans-serif font (Myriad/Helvetica) with @samp{\sffamily} and
+to bold Greek letters with @samp{\boldmath}.
+
+@end table
+
+Please note that you have to delete the file @file{labeldimens.dat} in
+the current directory if you have changes the font setup with a new own
+@LaTeX{} preamble.  This forces @PPTHREE{} to recalculate the dimensions
+of all labels -- and since the fonts have changed, this is necessary.
+
+
+@node LaTeX hooks
+@section @LaTeX{} hooks
+@cindex @LaTeX{} hooks
+@cindex hooks, @LaTeX{}
+
+First of all -- what is a hook?  A hook in general is a macro or command
+that can be re-defined by the user, and that is called implicitly.
+Thus, by re-defining a hook, the user can modify the behaviour of the
+program at certain points.
+
+In @PPTHREE{}, hooks are called for printing text of various kinds.  For
+example, every implicit (i.@s{}e.@: automatically generated) star name
+is printed by @samp{\Starname} as in @samp{\Starname@{$\gamma$@}}.  By
+default, this macro does nothing more than printing its argument:
+
+@example
+\newcommand*@{\Starname@}[1]@{#1@}
+@end example
+
+@noindent
+But if you re-define it, you can make every (implicit!)@: star label a
+little bit larger:
+
+@example
+\renewcommand*@{\Starname@}[1]@{\larger #1@}
+@end example
+
+@noindent
+Notice that the macro @samp{\larger} is provided by the `relsize'
+package that must be loaded before, see @ref{User preamble}.  So, just
+write the lines
+
+@example
+\usepackage@{relsize@}
+\renewcommand*@{\Starname@}[1]@{\larger #1@}
+@end example
+
+@noindent
+in the file @file{mypreamble.tex}, say
+
+@example
+set latex_preamble mypreamble.tex
+@end example
+
+@noindent
+in the @PPTHREE{} input script, and voil@`a -- all star labels are
+larger.
+
+@sp 1
+
+@PPTHREE{} knows nine hard-wired @LaTeX{} hooks:
+
+@table @samp
+@item \Label
+@cindex Label (@LaTeX{} hook)
+Argument: the label text.  It applies to all labels, @emph{before} any
+specific hook of the following is applied.
+
+@item \TextLabel
+@cindex TextLabel (@LaTeX{} hook)
+Argument: the label text.  It applies to all labels that the user
+creates with @samp{text}.
+
+@item \FlexLabel
+@cindex FlexLabel (@LaTeX{} hook)
+Argument: the label text.  It applies to all flexes.
+
+@item \Starname
+@cindex Starname (@LaTeX{} hook)
+Argument: the star name.  It applies to all automatically generated star
+names, in particular @emph{not} to user-defined names given by
+@samp{set_label_text}.
+
+@item \Messier
+@itemx \NGC
+@itemx \IC
+@cindex Messier (@LaTeX{} hook)
+@cindex @acronym{NGC} (@LaTeX{} hook)
+@cindex @acronym{IC} (@LaTeX{} hook)
+Argument: the respective catalogue number.  This generates the labels
+for nebulae.  Notice that you must provide the catalogue name, or you
+can leave it as well.  For example, many people prefer @acronym{NGC}
+numbers as plain numbers without an `NGC' before it.  You achieve this
+effect with
+
+@example
+\renewcommand*@{\NGC@}[1]@{#1@}
+@end example
+
+@item \TicMark
+@cindex TicMark (@LaTeX{} hook)
+Argument: the tic mark label text.  It applies to all tic mark labels,
+see @ref{Tic labels}.
+
+@item \DP
+@cindex DP (@LaTeX{} hook)
+@cindex decimal point (DP, @LaTeX{} hook)
+@cindex point, decimal (DP, @LaTeX{} hook)
+No argument.  This generates the decimal point.  By default, it's a `.',
+however in many countries a `,' is used instead.  You get this with
+
+@example
+\renewcommand@{\DP@}@{,@}
+@end example
+
+@end table
+
+
+@node Known problems
+@appendix Known problems
+@cindex bugs
+
+The following issues are known to the maintainer of @PPTHREE{}.  If you
+find another one, please report it on
+@uref{http://sourceforge.net/projects/pp3,@PPTHREE{}'s project page}.
+
+@itemize
+@item
+Unknown stars in constellation line data files (the default is the file
+@file{lines.dat}) result in an error message, which is good, but the
+error message may include another -- probably valid -- star name, which
+is bad.  Fortunately the actually wrong star and the printed star are
+within the same constellation line, the printed star coming first.
+
+@item
+The usage of semicolons in @PPTHREE{} input scripts is not
+consistent. For example, a `@code{reposition}' needs one, but a
+`@code{set_label_text}' not.
+
+@cindex Milky Way
+
+@item
+If you print a large portion of the sky, e.@s{}g.@: a hemisphere, and a
+pole-near region of the Milky Way (e.@s{}g.@tie{}Southern Cross) is at
+the very rim of the map, the Milky Way dots are printed a little bit too
+coarsely, leaving tiny gaps between the dots.
+
+@item
+The declination circles have slight kinks at 0@dmn{h} rectascension.
+Except for the @math{\pm 80^\circ} circles they are mostly invisible
+though.
+
+@kwindex ecliptic
+@kwindex grid
+@kwindex coordinate grid
+@kwindex penalty scheme
+
+@item
+Ecliptic and grid don't take part in @PPTHREE{}'s penalty scheme yet.
+
+@cindex Small Magellanic Cloud
+
+@item
+Large nebulae are drawn as ellipses representing their approximative
+shape in the sky.  However, the algorithm doing that is mathematically
+flawed and doesn't work for polar-near regions.  Fortunately this only
+affects the Small Magellanic Cloud, the actual shape of which is, by a
+curious coincidence, rendered very well by that algorithm.
+@end itemize
+
+
+@menu
+* Wishlist::                    PP3's todo list.  Feel free to contribute!
+@end menu
+
+
+@node Wishlist
+@section Wishlist
+@cindex wishlist
+
+It would be nice to have the following things in @PPTHREE{}.  Please
+contact @uref{mailto:bronger@@users.sourceforge.net,Torsten Bronger} if
+you want to contribute.
+
+@itemize
+@item
+Very faint stars, i.@s{}e.@: stars fainter than
+@samp{faintest_star_disk_magnitude}, should be removed from the map
+automatically, if they overlap with a label.  It shouldn't matter
+whether the label was implicitly created or user-defined.
+
+@item
+An ephemerides module that allows to insert the Sun, the Moon, and the
+planets on the map, for a given date, time, and observation location on
+Earth.  By the way, the C++ module itself is already existing, but its
+integration into @PPTHREE{} is not done yet.
+
+@item
+More map projections, in particular a real isogonal one.
+
+@item
+The resolution of the Milky Way should be determined in a way that
+@TeX{}'s memory doesn't overflow.  Maybe one should switch to contour
+plots instead of dot patterns for the Milky Way.
+
+@item
+Create little bitmaps of all labels in order to determine kerning
+parameters for them.
+
+@item
+@PPTHREE{} should become able to deal with large data bases.
+
+@item
+The
+@uref{http://cvs.sourceforge.net/viewcvs.py/celestia/celestia/data/starnames.dat,
+star names list of Celestia} or something like that should be used for
+identifying stars in input scripts.
+@end itemize
+
+Besides that, I'd like to re-structure the internals of @PPTHREE{}
+because in some respect the code is not well maintainable and
+expandable.  For the long-term future it may be worth thinking about
+using Guile as the scripting language.
+
+
+@node Data file formats
+@appendix Data file formats
+@cindex data file formats
+@cindex file formats
+@cindex formats of data files
+
+Maybe you want to use your own data bases with @PPTHREE{}.  If they are
+not too large@footnote{Unfortunately @PPTHREE{} still has the
+disadvantageous behaviour of reading the @emph{whole} data base file.}
+you may well do so.  Of course, then you need to know the internal
+structure of the files.  Although they are so simple that reverse
+engineering should be almost trivial, you find here a complete
+description of all of them.
+
+Additionally I will give information where the original data of
+@PPTHREE{}'s standard distribution came from.
+
+The last point, the ``label dimensions file'', isn't a real data base
+file, but an internal temporary file.  It is mentioned here just for
+completeness.
+
+@menu
+* Stars data file::             The stars database.
+* Nebulae data file::           Galaxies, dust clouds, and such.
+* Lines data file::             The purely subjective constellation
+                                  lines.
+* Boundaries data file::        The boundaries between constellations.
+* Milky Way data file::         The Milky Way brightness bitmap.
+* Label dimensions file::       Typographic dimensions of all labels.
+@end menu
+
+
+@node Stars data file
+@section Stars data file
+
+This is a text file usually called @file{stars.dat}.  Four consecutive
+lines belong together and refer to one particular star.  There is no
+header.
+
+@table @asis
+@item Line 1
+A row with seven fields separated by whitespace:
+
+@enumerate
+@item
+Henry Draper Catalogue number (`@code{0}' if unknown),
+
+@item
+BSC catalogue number (`@code{0}' if unknown),
+
+@item
+rectascension in hours,
+
+@item
+declination in degrees,
+
+@item
+visual brightness in magnitudes,
+
+@item
+B@minus{}V brightness in magnitudes (`@code{99.0}' if unknown), and
+
+@item
+Flamsteed number (`@code{0}' if unknown).
+
+@end enumerate
+
+@item Line 2
+The label (astronomical name) for the star, as a @LaTeX{}-ready string,
+e.@s{}g.@: ``@code{$\alpha$}'', ``@code{$\phi^@{2@}$}'', or simply
+``@code{$23$}''.  May be the empty string.
+
+@item Line 3
+The astronomical abbreviation of the constellation.  It must be all
+uppercase.
+
+@item Line 4
+The spectral class.  It must start with the spectral class letter,
+followed by the fraction digit, followed by the luminosity class as a
+Roman number, e.@s{}g.@: ``@code{F5III}''.  Anything may follow as in
+``@code{K2-IIICa-1}'', however the mandatory parts must not contain any
+whitespace.
+
+@end table
+
+@subheading Example
+
+@smallexample
+358 15 0.139805 29.0906 2.06 -0.11 21
+$\alpha$
+AND
+B8IVpMnHg
+11636 553 1.91067 20.8081 2.64 0.13 6
+$\beta$
+ARI
+A5V
+886 39 0.220611 15.1836 2.83 -0.23 88
+$\gamma$
+PEG
+B2IV
+@end smallexample
+
+
+@subheading PP3's star data origin
+@cindex @acronym{BSC}
+@cindex Cartes du Ciel
+
+It's the Bright Stars Catalogue (@acronym{BSC}) as distributed with the
+program @uref{http://www.stargazing.net/astropc/,Cartes du Ciel}.  It
+contains almost 10,000@tie{}stars.  I corrected minor mistakes and let
+all double stars collapse, i.@s{}e.@: their visual brightnesses were
+summed up and the respective minor partner was removed from the file.
+
+
+@node Nebulae data file
+@section Nebulae data file
+
+This is a text file usually called @file{nebulae.dat}.  There is no
+header.  The file is just a whitespace separated stream of numbers and
+constellation abbreviations.  In order to make it more readable though,
+the standard @PPTHREE{} nebulae file has every nebula on one single line
+of its own.
+
+Each dataset has the following eleven fields:
+
+@enumerate
+@item
+@acronym{NGC} catalogue number (`@code{0}' if not listed there),
+
+@item
+@acronym{IC} catalogue number (`@code{0}' if not listed there),
+
+@item
+Messier Catalogue number (`@code{0}' if not listed there),
+
+@item
+The astronomical abbreviation of the constellation.  It must be all
+uppercase.
+
+@item
+rectascension in hours,
+
+@item
+declination in degrees,
+
+@item
+visual brightness in magnitudes,
+
+@item
+large diameter in degree minutes,
+
+@item
+small diameter in degree minutes (must be equal to the large diameter if
+unknown),
+
+@item
+the horizontal angle if the large diameter in degrees (`@code{720.0}' if
+unknown), and
+
+@item
+the type of the nebula: 0:@tie{}unknown, 1:@tie{}galaxy,
+2:@tie{}emission nebula, 3:@tie{}reflection nebula, 4:@tie{}open star
+cluster, and 5:@tie{}globular star cluster.
+
+@end enumerate
+
+@subheading Example
+
+@smallexample
+1 0 0 PEG 0.121083 27.7089 13.6 0.0283333 0.02 -30 1
+2 0 0 PEG 0.121417 27.6786 15 0.0166667 0.01 -22 1
+3 0 0 PSC 0.121333 8.30139 14.4 0.0183333 0.01 -21 1
+4 0 0 PSC 0.123472 8.37389 16.9 0.01 0.005 55 1
+5 0 0 AND 0.130222 35.3628 14.8 0.02 0.0116667 -25 1
+6 0 0 AND 0.159056 33.3089 14.1 0.0283333 0.0266667 -50 1
+
+1976 0 42 ORI 5.58808 -5.39028 4 1.08333 1 720 2
+3034 0 82 UMA 9.93167 69.6831 9.2 0.186667 0.0716667 25 1
+7000 0 0 CYG 20.9806 44.5167 4 2 1.66667 720 2
+@end smallexample
+
+@subheading PP3's nebulae data origin
+@cindex Steinicke, Wolfgang
+
+It's the @acronym{NGC}/@acronym{IC} catalogues as compiled by
+@uref{http://www.ngcic.com/steinicke/,Wolfgang Steinicke}.
+
+
+@node Lines data file
+@section Constellation lines data file
+@cindex lines between stars
+@cindex constellation lines
+
+This is a text file usually called @file{lines.dat}.  It has no header.
+You can define paths of constellation lines by lists of stars that are
+ended with a semicolon@tie{}`@code{;}'.  You can insert superfluous
+whitespace as you wish, and comments after every@tie{}`@code{#}'.
+
+Stars are given in the usual way: Either by a pair of constellation
+abbreviation and Flamsteed number, as in
+
+@example
+ORI 19
+@end example
+
+@noindent
+(Rigel), or by `@code{HD}' and the Henry Draper catalogue number, as in
+
+@example
+HD 108248
+@end example
+
+@noindent
+(Acrux).
+
+@subheading Example
+
+@smallexample
+# Orion
+
+ORI 19  ORI 34  ORI 24 ;
+ORI 53  ORI 50  ORI 46  ORI 34 ;
+ORI 50  ORI 58 ;
+
+# Southern Cross
+
+HD 111123  # beta Cru
+HD 106490 ; # delta Cru
+
+HD 108248  # alpha Cur
+HD 108903 ;  # gamma Cru
+@end smallexample
+
+@subheading PP3's constellation lines origin
+@cindex Karkoschka, Erich
+@cindex Atlas f@"ur Himmelsbeobachter
+
+I created the lines after my fancy.  The @cite{Atlas f@"ur
+Himmelsbeobachter}@footnote{by Erich Karkoschka, in German;
+@acronym{ISBN}@tie{}3440074889} was an important source of inspiration
+though.
+
+
+@node Boundaries data file
+@section Boundaries data file
+
+It doesn't make much sense to use an own boundaries file, unless you
+want to use a different equinox, but anyway.  This is a text file
+usually called @file{boundaries.dat}.  It has no header.
+
+The file is a sequence of elementary line segments.  Every segment is a
+whitespace separated sequence of entries.  The entries for each segment
+are:
+
+@enumerate
+@item
+Number of points @math{n_1} in the segment.
+
+@item
+Repeated @math{n_1} times:
+
+@enumerate
+@item
+rectascension of point in hours,
+@item
+declination of point in
+degrees.
+@end enumerate
+
+@item
+Number of constellations @math{n_2} touching this border line (is
+always@tie{}2, however it hasn't always been due to flawed raw data).
+
+@item
+Repeated @math{n_2} times: All uppercase astronomical abbreviation of
+the adjacent constellation. It may distinguish between @code{SER1} and
+@code{SER2} for Serpens Caput and Serpens Cauda.
+
+@end enumerate
+
+@subheading Example
+
+@smallexample
+3 20.63865 2.43608 20.63929 1.43613 20.63992 0.43617 2 AQL AQR
+10 20.63992 0.43617 20.64055 -0.56377 20.64118 -1.56373
+  20.64181 -2.56368 20.64245 -3.56364 20.64308 -4.56359 20.64372 -5.56355
+  20.64435 -6.56350 20.64500 -7.56346 20.64564 -8.56341 2 AQL AQR
+9 17.71838 -67.57110 17.65152 -67.58319 17.58465 -67.59526
+  17.51772 -67.60731 17.45076 -67.61933 17.38378 -67.63130 17.31676 -67.64324
+  17.24970 -67.65515 17.21616 -67.66108 2 ARA APS
+@end smallexample
+
+@subheading PP3's boundary data origin
+
+It's the @uref{ftp://cdsarc.u-strasbg.fr/cats/VI/49/,Catalogue of
+Constellation Boundary Data} by Davenhall and Leggett.  I had to fix
+some bugs though, because the Ophiuchus/Serpens region was flawed.
+Additionally, the original data has peculiarities because it tries to be
+useful for bounded maps, e.@s{}g.@: in Mercator projection.  I removed
+the resulting spurious lines.
+
+
+@node Milky Way data file
+@section Milky Way data file
+@cindex Milky Way
+
+This is a text file usually called @file{milkyway.dat}.
+
+Its header is extremely simple: It consists of only one number which is
+the maximal (=@tie{}equatorial) diagonal half distance of two pixels in
+degrees. This value is used as the radius for the milky way pixels.  Of
+course it must be the minimal radius for which there are no gaps between
+the pixels.
+
+What follows are the Milky Way pixels themselves.  Each consists of tree
+entries, separated by white space:
+
+@enumerate
+@item
+The rectascension in hours,
+
+@item
+the declination in degrees, and
+
+@item
+the grey value of the pixel from 1@tie{}to@tie{}255.  Zero is not used
+because zero-value pixels are not included into the data file anyway.
+@end enumerate
+
+
+@subheading Example
+
+@smallexample
+0.212
+11.885 0.259 1
+11.962 0.295 5
+11.974 0.298 5
+
+17.982 -26.999 136
+17.982 -27.299 158
+17.982 -27.599 169
+17.982 -27.899 199
+17.981 -28.199 235
+@end smallexample
+
+
+@subheading PP3's boundary data origin
+@cindex Mellinger, Axel
+
+I used the
+@uref{http://home.arcor-online.de/axel.mellinger/,@emph{All-Sky Milky
+Way Panorama}} by Axel Mellinger.  His bitmap with the two hemispheres
+in equidistant azimuthal projection was greyscaled and smoothed with the
+Gimp, and then transformed to @PPTHREE{}'s format with a small
+hand-written C program.
+
+
+@node Label dimensions file
+@section Label dimensions file
+@cindex label dimensions
+
+The default name of this file is @file{labeldimens.dat}.  This file is
+never user provided but generated by @PPTHREE{} itself in order to store
+typographic dimensions of all labels.  Highly probably you needn't know
+its structure.
+
+Every labels has two lines in the file:
+
+@table @asis
+@item Line 1
+The label itself in @LaTeX{} form.
+
+@item Line 2
+The typographic width, height, and depth of the label in centimetres,
+separated by whitespace.
+
+@end table
+
+@subheading Example
+
+@smallexample
+$10$~\footnotesize UMa
+0.97106 0.23043 0.00253
+$\omega$
+0.34197 0.17081 0.00000
+10 UMa
+1.11657 0.23389 0.00316
+47 Tuc
+0.94506 0.23389 0.00316
+Pleiades
+1.20865 0.24777 0.00316
+\FlexLabel@{Andromeda@}
+1.86061 0.25076 0.00316
+\FlexLabel@{Antlia@}
+0.93945 0.25076 0.00316
+@end smallexample
+
+
+@node List of all constellations
+@appendix List of all constellations
+@cindex constellations
+@cindex list of constellations
+@cindex coordinates of constellations
+
+@table @asis
+@item first column
+Latin name
+
+@item second column
+astronomical abbreviation, ready for being used -- in its all-uppercase
+form -- with @samp{set constellation}
+
+@item third column
+English name
+
+@item fifth column
+rectascension of constellation centre, in hours, ready for being used
+with @samp{center_rectascension}
+
+@item sixth column
+declination of constellation centre, in degrees, ready for being used
+with @samp{center_declination}
+
+@item last column
+@iftex
+recommended scale for a 9@dmn{cm}@tie{}@math{\times}@tie{}9@dmn{cm} map,
+in degrees per centimetre, ready for being used
+with @samp{grad_per_cm}
+@end iftex
+@ifnottex
+recommended scale for a 9@dmn{cm}@tie{}x@tie{}9@dmn{cm} map,
+in degrees per centimetre, ready for being used
+with @samp{grad_per_cm}
+@end ifnottex
+
+@end table
+
+
+The values are taken from the input scripts used for the Wikipedia
+Project, see @ref{Successful use of PP3}.
+
+@sp 2
+
+@multitable {Triangulum Australe} {MMM} {Water Serpent (male)} {88.88} {@minus{}88.8} {88.8}
+@item @emph{Latin} @tab @emph{ab.} @tab @emph{English}
+      @tab @emph{rec.} @tab @emph{dec.} @tab @emph{sc.}
+@item Andromeda @tab And @tab Andromeda                    @tab 1 @tab @math{+}38 @tab 4
+@item Antlia @tab Ant @tab Air Pump                        @tab 10.2 @tab @minus{}35 @tab 3
+@item Apus @tab Aps @tab Bird of Paradise                  @tab 16 @tab @minus{}75 @tab 3
+@item Aquarius @tab Aqr @tab Water Carrier                 @tab 22.3 @tab @minus{}8 @tab 6
+@item Aquila @tab Aql @tab Eagle                           @tab 19.7 @tab @math{+}3 @tab 4
+@item Ara @tab Ara @tab Altar                              @tab 17.5 @tab @minus{}53 @tab 4
+@item Aries @tab Ari @tab Ram                              @tab 2.8 @tab @math{+}18.8 @tab 4
+@item Auriga @tab Aur @tab Charioteer                      @tab 5.6 @tab @math{+}38 @tab 4
+@item Bo@"otes @tab Boo @tab Herdsman                      @tab 14.7 @tab @math{+}34 @tab 4
+@item Caelum @tab Cae @tab Chisel                          @tab 4.8 @tab @minus{}38 @tab 3
+@item Camelopardalis @tab Cam @tab Giraffe                 @tab 5.5 @tab @math{+}75 @tab 5
+@item Cancer @tab Cnc @tab Crab                            @tab 8.7 @tab @math{+}20 @tab 4
+@item Canes Venatici @tab CVn @tab Hunting Dogs            @tab 13 @tab @math{+}40 @tab 4
+@item Canis Major @tab CMa @tab Big Dog                    @tab 6.5 @tab @minus{}20 @tab 4
+@item Canis Minor @tab CMi @tab Little Dog                 @tab 7.5 @tab @math{+}12 @tab 4
+@item Capricornus @tab Cap @tab Goat                       @tab 21 @tab @minus{}16 @tab 4
+@item Carina @tab Car @tab Keel                            @tab 8.5 @tab @minus{}64 @tab 5
+@item Cassiopeia @tab Cas @tab Cassiopeia                  @tab 0.5 @tab @math{+}60.5 @tab 4
+@item Centaurus @tab Cen @tab Centaur                      @tab 13.6 @tab @minus{}45 @tab 5
+@item Cepheus @tab Cep @tab Cepheus                        @tab 23 @tab @math{+}75 @tab 4
+@item Cetus @tab Cet @tab Whale                            @tab 1.7 @tab @minus{}7 @tab 6
+@item Chamaeleon @tab Cha @tab Chameleon                   @tab 11 @tab @minus{}79 @tab 4
+@item Circinus @tab Cir @tab Compasses                     @tab 14.8 @tab @minus{}62 @tab 4
+@item Columba @tab Col @tab Dove                           @tab 5.8 @tab @minus{}35 @tab 4
+@item Coma Berenices @tab Com @tab Berenice's Hair         @tab 12.4 @tab @math{+}22.5 @tab 4
+@item Corona Australis @tab CrA @tab Southern Crown        @tab 18.6 @tab @minus{}42 @tab 3
+@item Corona Borealis @tab CrB @tab Northern Crown         @tab 15.8 @tab @math{+}33 @tab 4
+@item Corvus @tab Crv @tab Crow                            @tab 12.4 @tab @minus{}18 @tab 4
+@item Crater @tab Crt @tab Cup                             @tab 11.4 @tab @minus{}16 @tab 4
+@item Crux @tab Cru @tab Southern Cross                    @tab 13.2 @tab @minus{}60.8 @tab 4
+@item Cygnus @tab Cyg @tab Swan                            @tab 19.95 @tab @math{+}40.8 @tab 5
+@item Delphinus @tab Del @tab Dolphin                      @tab 20.5 @tab @math{+}12 @tab 3
+@item Dorado @tab Dor @tab Goldfish                        @tab 5.1 @tab @minus{}60 @tab 4
+@item Draco @tab Dra @tab Dragon                           @tab 16.5 @tab @math{+}72 @tab 5
+@item Equuleus @tab Equ @tab Little Horse                  @tab 21.2 @tab @math{+}8 @tab 3
+@item Eridanus @tab Eri @tab River                         @tab 3.8 @tab @minus{}30 @tab 6
+@item Fornax @tab For @tab Furnace                         @tab 2.7 @tab @minus{}32 @tab 4
+@item Gemini @tab Gem @tab Twins                           @tab 7 @tab @math{+}20 @tab 4
+@item Grus @tab Gru @tab Crane                             @tab 22.5 @tab @minus{}44 @tab 4
+@item Hercules @tab Her @tab Hercules                      @tab 17.55 @tab @math{+}30 @tab 5
+@item Horologium @tab Hor @tab Clock                       @tab 3.3 @tab @minus{}53 @tab 4
+@item Hydra @tab Hya @tab Hydra (Sea Serpent)              @tab 11.15 @tab @minus{}15 @tab 10
+@item Hydrus @tab Hyi @tab Water Serpent (male)            @tab 2.5 @tab @minus{}70 @tab 4
+@item Indus @tab Ind @tab Indian                           @tab 21.5 @tab @minus{}60 @tab 4
+@item Lacerta @tab Lac @tab Lizard                         @tab 22.5 @tab @math{+}46 @tab 4
+@item Leo @tab Leo @tab Lion                               @tab 10.8 @tab @math{+}20 @tab 4
+@item Leo Minor @tab LMi @tab Smaller Lion                 @tab 10.3 @tab @math{+}32 @tab 4
+@item Lepus @tab Lep @tab Hare                             @tab 5.6 @tab @minus{}18 @tab 4
+@item Libra @tab Lib @tab Balance                          @tab 15.2 @tab @minus{}17 @tab 4
+@item Lupus @tab Lup @tab Wolf                             @tab 15.3 @tab @minus{}41 @tab 4
+@item Lynx @tab Lyn @tab Lynx                              @tab 8.2 @tab @math{+}47 @tab 4
+@item Lyra @tab Lyr @tab Lyre                              @tab 18.8 @tab @math{+}37 @tab 3
+@item Mensa @tab Men @tab Table                            @tab 5.7 @tab @minus{}77 @tab 4
+@item Microscopium @tab Mic @tab Microscope                @tab 21.15 @tab @minus{}37 @tab 3
+@item Monoceros @tab Mon @tab Unicorn                      @tab 6.7 @tab @minus{}3.5 @tab 4
+@item Musca @tab Mus @tab Fly                              @tab 12.6 @tab @minus{}70 @tab 4
+@item Norma @tab Nor @tab Square                           @tab 16 @tab @minus{}50 @tab 4
+@item Octans @tab Oct @tab Octant                          @tab 22 @tab @minus{}85 @tab 4
+@item Ophiucus @tab Oph @tab Serpent Holder                @tab 17.3 @tab @minus{}9 @tab 6
+@item Orion @tab Ori @tab Orion                            @tab 5.8 @tab @math{+}0 @tab 4
+@item Pavo @tab Pav @tab Peacock                           @tab 19.5 @tab @minus{}67 @tab 4
+@item Pegasus @tab Peg @tab Winged Horse                   @tab 22.7 @tab @math{+}20 @tab 6
+@item Perseus @tab Per @tab Perseus                        @tab 3.6 @tab @math{+}47 @tab 4
+@item Phoenix @tab Phe @tab Phoenix                        @tab 0.7 @tab @minus{}49 @tab 5
+@item Pictor @tab Pic @tab Easel                           @tab 5.6 @tab @minus{}54 @tab 4
+@item Pisces @tab Psc @tab Fishes                          @tab 0.5 @tab @math{+}14 @tab 6
+@item Pisces Austrinus @tab PsA @tab Southern Fish         @tab 22.3 @tab @minus{}31 @tab 4
+@item Puppis @tab Pup @tab Stern                           @tab 7.6 @tab @minus{}31 @tab 4
+@item Pyxis @tab Pyx @tab Compass                          @tab 8.95 @tab @minus{}30 @tab 4
+@item Reticulum @tab Ret @tab Reticle                      @tab 3.9 @tab @minus{}60 @tab 3
+@item Sagitta @tab Sge @tab Arrow                          @tab 19.6 @tab @math{+}15 @tab 4
+@item Sagittarius @tab Sgr @tab Archer                     @tab 18.5 @tab @minus{}27 @tab 4
+@item Scorpius @tab Sco @tab Scorpion                      @tab 16.8 @tab @minus{}30 @tab 4
+@item Sculptor @tab Scl @tab Sculptor                      @tab 0.5 @tab @minus{}32 @tab 5
+@item Scutum @tab Sct @tab Shield                          @tab 18.7 @tab @minus{}10 @tab 3
+@item Serpens @tab Ser @tab Serpent                        @tab 17.1 @tab @math{+}2 @tab 6.5
+@item Sextans @tab Sex @tab Sextant                        @tab 10.2 @tab @minus{}1 @tab 4
+@item Taurus @tab Tau @tab Bull                            @tab 4.6 @tab @math{+}18 @tab 4
+@item Telescopium @tab Tel @tab Telescope                  @tab 19.3 @tab @minus{}52 @tab 4
+@item Triangulum @tab Tri @tab Triangle                    @tab 2.2 @tab @math{+}33 @tab 4
+@item Triangulum Australe @tab TrA @tab Southern Triangle  @tab 16 @tab @minus{}65 @tab 3
+@item Tucana @tab Tuc @tab Toucan                          @tab 23.7 @tab @minus{}67 @tab 4
+@item Ursa Major @tab UMa @tab Great Bear                  @tab 11.5 @tab @math{+}55 @tab 6
+@item Ursa Minor @tab UMi @tab Little Bear                 @tab 15 @tab @math{+}78 @tab 4
+@item Vela @tab Vel @tab Sails                             @tab 9.6 @tab @minus{}48 @tab 4
+@item Virgo @tab Vir @tab Virgin                           @tab 13 @tab @math{+}3 @tab 5
+@item Volans @tab Vol @tab Flying Fish                     @tab 7.8 @tab @minus{}70 @tab 4
+@item Vulpecula @tab Vul @tab Fox                          @tab 20.2 @tab @math{+}25 @tab 4
+@end multitable
+
+
+@node Index
+@unnumbered Index
+
+@iftex
+All @PPTHREE{} keywords are printed in @t{typewriter} style.
+@end iftex
+
+@printindex cp
+
+@bye
+
+
+@c  LocalWords:  texinfo def rmdefault ppl mathrel mskip pstexinfo texi bronger
+@c  LocalWords:  Exp PPTHREE tex hbox vbox sevenrm vss ifnottex vskip filll EPS
+@c  LocalWords:  leavevmode dircategory direntry iftex logue logues pstricks
+@c  LocalWords:  PDF Rectascension PDFs emph uref noindent rectascension dmn
+@c  LocalWords:  circ Ori UMa Hyi Cauda NGC Celestia itemize var Mik GSView SVG
+@c  LocalWords:  exe env rpm dat pdf Corel pxref asis BSC IIICa IVpMnHg eps not
+@c  LocalWords:  ARI Cartes Ciel PSC CYG Steinicke Himmelsbeobachter AQL AQR
+@c  LocalWords:  Davenhall Leggett otnotesize Tuc FlexLabel Acrux Messier's cnf
+@c  LocalWords:  cindex kwindex byfmt ini flexes xref ifinfo ifnotinfo tics Cyg
+@c  LocalWords:  deffn deffnx ifhtml todo xmarksthespot miktex Cnc hskip psdots
+@c  LocalWords:  leo nofiles pst TicMark TextLabel AtBeginDocument mypreamble
+@c  LocalWords:  IfFileExists eulervm pmy phv riptsize mdseries atid betelg MMM
+@c  LocalWords:  PSTricks AMSMath aller Australe dec Aps Aqr Aql Ari Aur Cae
+@c  LocalWords:  Camelopardalis Venatici CVn CMa CMi Cas Cen Cet Cha Cir CrA
+@c  LocalWords:  CrB Crv Crt Dra Equ Eri Gru Hor Hya Lac LMi Lep Lup Lyn Lyr
+@c  LocalWords:  Mic Mus Oph Phe Psc Austrinus PsA Sge Sgr Sco Scl Sct TrA UMi
+@c  LocalWords:  Vel Vir Vul wiki voil itemx otes

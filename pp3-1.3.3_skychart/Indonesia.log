@@ -1,0 +1,350 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=latex 2017.12.27)  8 APR 2018 23:03
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**Indonesia.tex
+(./Indonesia.tex
+LaTeX2e <2016/02/01>
+Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+No auxiliary output files.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2016/01/03 v1.1b Standard LaTeX Color (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: dvips.def on input line 143.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/dvips.def
+File: dvips.def 2015/12/30 v3.0k Driver-dependent file (DPC,SPQR)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 2015/12/30 v3.0k Driver-dependent file (DPC,SPQR)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/pstricks/pstricks.sty
+Package: pstricks 2015/11/14 v0.62 LaTeX wrapper for `PSTricks' (RN,HV)
+
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Driver file: dvips.def on input line 225.
+LaTeX Info: Redefining \color on input line 702.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pstricks/pstricks.tex
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/pst-xkey.tex
+File: pst-xkey.tex 2005/11/25 v1.6 PSTricks specialization of xkeyval (HA)
+
+(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks14
+\XKV@tempa@toks=\toks15
+
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/keyval.tex))
+\XKV@depth=\count87
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+)))
+(/usr/share/texlive/texmf-dist/tex/generic/pstricks/pst-fp.tex
+`pst-fp' v0.05, 2010/01/17 (hv)
+\pstFP@xs=\count88
+\pstFP@xia=\count89
+\pstFP@xib=\count90
+\pstFP@xfa=\count91
+\pstFP@xfb=\count92
+\pstFP@rega=\count93
+\pstFP@regb=\count94
+\pstFP@regs=\count95
+\pstFP@times=\count96
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks16
+\pgfutil@tempdima=\dimen103
+\pgfutil@tempdimb=\dimen104
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.t
+ex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks17
+\pgfkeys@temptoks=\toks18
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.t
+ex
+\pgfkeys@tmptoks=\toks19
+)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex
+\pgf@x=\dimen105
+\pgf@xa=\dimen106
+\pgf@xb=\dimen107
+\pgf@xc=\dimen108
+\pgf@y=\dimen109
+\pgf@ya=\dimen110
+\pgf@yb=\dimen111
+\pgf@yc=\dimen112
+\c@pgf@counta=\count97
+\c@pgf@countb=\count98
+\c@pgf@countc=\count99
+\c@pgf@countd=\count100
+\pgfutil@tempcnta=\count101
+\pgfutil@tempcntb=\count102
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen113
+\pgfmath@count=\count103
+\pgfmath@box=\box26
+\pgfmath@toks=\toks20
+\pgfmath@stack@operand=\toks21
+\pgfmath@stack@operation=\toks22
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonomet
+ric.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.cod
+e.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
+thmetics.code.tex)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count104
+))
+\pgffor@iter=\dimen114
+\pgffor@skip=\dimen115
+\pgffor@stack=\toks23
+\pgffor@toks=\toks24
+)
+\psLoopIndex=\count105
+
+`PSTricks' v2.64b  <2015/14/11> (tvz)
+\pst@dima=\dimen116
+\pst@dimb=\dimen117
+\pst@dimc=\dimen118
+\pst@dimd=\dimen119
+\pst@dimg=\dimen120
+\pst@dimh=\dimen121
+\pst@dimm=\dimen122
+\pst@dimn=\dimen123
+\pst@dimo=\dimen124
+\pst@dimp=\dimen125
+\pst@hbox=\box27
+\pst@ibox=\box28
+\pst@boxg=\box29
+\pst@cnta=\count106
+\pst@cntb=\count107
+\pst@cntc=\count108
+\pst@cntd=\count109
+\pst@cntg=\count110
+\pst@cnth=\count111
+\pst@cntm=\count112
+\pst@cntn=\count113
+\pst@cnto=\count114
+\pst@cntp=\count115
+\@zero=\count116
+\pst@toks=\toks25
+(/usr/share/texlive/texmf-dist/tex/generic/pstricks/pstricks.con)
+\psunit=\dimen126
+\psxunit=\dimen127
+\psyunit=\dimen128
+\pst@C@@rType=\count117
+\pslinewidth=\dimen129
+\psk@startLW=\dimen130
+\psk@endLW=\dimen131
+\pst@customdefs=\toks26
+\pslinearc=\dimen132
+\pst@symbolStep=\dimen133
+\pst@symbolWidth=\dimen134
+\pst@symbolLinewidth=\dimen135
+\everypsbox=\toks27
+\psframesep=\dimen136
+\pslabelsep=\dimen137
+\sh@wgridXunit=\dimen138
+\sh@wgridYunit=\dimen139
+\pst@shift=\dimen140
+)
+File: pstricks.tex 2015/14/11 v2.64b `PSTricks' (tvz,hv)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pstricks/pst-fp.tex)
+File: pst-fp.tex 2015/14/11 v2.64b `PST-fp' (hv)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pst-text/pst-text.sty
+Package: pst-text 2006/01/01 package wrapper for pst-text.tex (hv)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pst-text/pst-text.tex
+ v1.00, 2006/11/05(tvz,hv))
+File: pst-text.tex 2006/11/05 1.00 `pst-text' (tvz)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/mathptmx.sty
+Package: mathptmx 2005/04/12 PSNFSS-v9.2a Times w/ Math, improved (SPQR, WaS) 
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 28.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/ztmcm/m/n on input line 28.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/ztmcm/m/n on input line 28.
+LaTeX Font Info:    Redeclaring symbol font `letters' on input line 29.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/ztmcm/m/it on input line 29.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/ztmcm/m/it on input line 29.
+LaTeX Font Info:    Redeclaring symbol font `symbols' on input line 30.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/ztmcm/m/n on input line 30.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/ztmcm/m/n on input line 30.
+LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 31.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/ztmcm/m/n on input line 31.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/ztmcm/m/n on input line 31.
+\symbold=\mathgroup4
+\symitalic=\mathgroup5
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/ptm/bx/n on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/ptm/bx/n on input line 34.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/ptm/m/it on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/ptm/m/it on input line 35.
+LaTeX Info: Redefining \hbar on input line 50.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/helvet.sty
+Package: helvet 2005/04/12 PSNFSS-v9.2a (WaS) 
+)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is not detected.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count118
+\Gm@cntv=\count119
+\c@Gm@tempcnt=\count120
+\Gm@bindingoffset=\dimen141
+\Gm@wd@mp=\dimen142
+\Gm@odd@mp=\dimen143
+\Gm@even@mp=\dimen144
+\Gm@layoutwidth=\dimen145
+\Gm@layoutheight=\dimen146
+\Gm@layouthoffset=\dimen147
+\Gm@layoutvoffset=\dimen148
+\Gm@dimlist=\toks28
+)
+No file Indonesia.aux.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 21.
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+\big@size=\dimen149
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 21.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd
+File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
+)
+*geometry* driver: auto-detecting
+*geometry* detected driver: dvips
+*geometry* verbose mode - [ preamble ] result:
+* driver: dvips
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(0.0pt, 512.91624pt, 0.0pt)
+* v-part:(T,H,B)=(0.0pt, 512.91624pt, 0.0pt)
+* \paperwidth=512.91624pt
+* \paperheight=512.91624pt
+* \textwidth=512.91624pt
+* \textheight=512.91624pt
+* \oddsidemargin=-72.26999pt
+* \evensidemargin=-72.26999pt
+* \topmargin=-72.26999pt
+* \headheight=0.0pt
+* \headsep=0.0pt
+* \topskip=10.0pt
+* \footskip=0.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+[1
+
+] ) 
+Here is how much of TeX's memory you used:
+ 8133 strings out of 493030
+ 146124 string characters out of 6136259
+ 1231480 words of memory out of 5000000
+ 11610 multiletter control sequences out of 15000+600000
+ 4753 words of font info for 16 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 37i,5n,68p,407b,209s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on Indonesia.dvi (1 page, 1039768 bytes).

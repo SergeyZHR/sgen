@@ -1,0 +1,32 @@
+filename output map.tex
+switch pdf_output on
+switch eps_output off
+
+set center_rectascension 17.2
+set center_declination 57
+set grad_per_cm 5
+set box_width 36
+set box_height 36
+
+set star_scaling 0.5
+set faintest_star_disk_magnitude 5.5
+set minimal_star_radius 0.005
+switch constellation_lines on
+switch ecliptic on
+switch horizon on
+switch milky_way off
+switch grid on
+switch boundaries off
+switch nebulae on
+switch labels on
+switch colored_stars off
+color stars 0 0 0
+color nebulae 0 0 0
+color background 1 1 1
+color grid 0.5 0.5 0.5
+color ecliptic 0.3 0.3 0.3
+color constellation_lines 0.7 0.7 0.7
+color labels 0 0 0
+color boundaries 0 0 0
+line_width boundaries 0.005
+line_width constellation_lines 0.01

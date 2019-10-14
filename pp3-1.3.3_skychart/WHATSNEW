@@ -1,0 +1,53 @@
+What's new in PP3?
+==================
+
+
+Version 1.3.3:
+--------------
+
+* Documentation added.
+
+* Fixed serious bug that caused the output file to be crippled under
+  Windows in some cases.
+
+
+Version 1.3.2:
+--------------
+
+* Example PP3 scripts for all 88 constellations, including all
+  constellation lines
+
+* Example GIMP script for converting PP3 output to bitmaps in batch
+  mode
+
+* Fixed a serious bug with reading of boundaries that caused huge
+  memory usage.
+
+* Fixed a bug that forced PP3 to re-calculate the label dimensions
+  unnecessarily.
+
+* Minor bugfixes in auxiliary files
+
+
+Version 1.3.1:
+--------------
+
+* Made compilation easier (no problems with fmax etc. anymore)
+
+
+Version 1.3:
+------------
+
+* Better README
+
+* Reference Card
+
+* More Wikipedia example scripts
+
+* Many more constellation lines (Northern sky almost complete now)
+
+* Tic Marks
+
+* Milky way switched off by default
+
+* New switch: "nebulae" can switch nebulae on or off globally.

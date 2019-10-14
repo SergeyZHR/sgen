@@ -1,0 +1,28 @@
+filename output mapp.tex
+switch pdf_output on
+switch eps_output off
+
+set center_rectascension 5
+set center_declination 10
+set grad_per_cm 6
+set box_width 10
+set box_height 10
+
+#set star_scaling 0.6
+#set faintest_star_disk_magnitude 2
+set faintest_star_magnitude 5.2
+set minimal_star_radius 0.03
+
+switch constellation_lines off
+switch ecliptic off
+switch milky_way off
+switch grid off
+switch boundaries off
+switch nebulae off
+switch labels off
+switch colored_stars off
+switch horizon off
+color background 1 1 1
+color stars 0 0 0
+color horizon 0 0 0
+

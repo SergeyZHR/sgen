@@ -1,0 +1,27 @@
+filename output Indonesia.tex
+switch pdf_output on
+
+set center_rectascension 17
+set center_declination -7
+set grad_per_cm 10
+set box_width 18
+set box_height 18
+
+set star_scaling 0.5
+set faintest_star_disk_magnitude 5.5
+set minimal_star_radius 0.005
+
+switch constellation_lines on
+switch ecliptic off
+switch horizon on
+switch milky_way off
+switch grid off
+switch boundaries on
+switch nebulae off
+switch labels off
+switch colored_stars on
+color horizon 0 0 1
+color background 0.09 0.10 0.24
+color boundaries 0 1 1
+line_width boundaries 0.005
+line_width constellation_lines 0.01

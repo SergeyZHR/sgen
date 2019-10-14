@@ -1,0 +1,86 @@
+\initial {A}
+\entry {\code {add}}{27}
+\entry {\code {add_labels}}{27}
+\initial {C}
+\entry {\code {color background}}{23}
+\entry {\code {color boundaries}}{23}
+\entry {\code {color constellation_lines}}{24}
+\entry {\code {color ecliptic}}{23}
+\entry {\code {color grid}}{23}
+\entry {\code {color highlighted_boundaries}}{24}
+\entry {\code {color labels}}{24}
+\entry {\code {color milky_way}}{24}
+\entry {\code {color nebulae}}{24}
+\entry {\code {color stars}}{24}
+\entry {\code {color text_labels}}{24}
+\initial {D}
+\entry {\code {delete}}{27}
+\entry {\code {delete_labels}}{27}
+\initial {F}
+\entry {\code {filename boundaries}}{26}
+\entry {\code {filename constellation_lines}}{26}
+\entry {\code {filename include}}{25}
+\entry {\code {filename label_dimensions}}{26}
+\entry {\code {filename latex_preamble}}{26}
+\entry {\code {filename milky_way}}{26}
+\entry {\code {filename nebulae}}{26}
+\entry {\code {filename output}}{21}
+\entry {\code {filename stars}}{26}
+\initial {L}
+\entry {\code {line_style boundaries}}{24}
+\entry {\code {line_style constellation_lines}}{24}
+\entry {\code {line_style ecliptic}}{24}
+\entry {\code {line_style grid}}{24}
+\entry {\code {line_style highlighted_boundaries}}{24}
+\entry {\code {line_style nebulae}}{24}
+\entry {\code {line_width boundaries}}{25}
+\entry {\code {line_width constellation_lines}}{25}
+\entry {\code {line_width ecliptic}}{25}
+\entry {\code {line_width grid}}{25}
+\entry {\code {line_width highlighted_boundaries}}{25}
+\entry {\code {line_width nebulae}}{25}
+\initial {O}
+\entry {\code {objects_and_labels}}{27}
+\initial {P}
+\entry {\code {penalties boundaries}}{26}
+\entry {\code {penalties boundaries_rim}}{26}
+\entry {\code {penalties constellation_lines}}{26}
+\entry {\code {penalties constellation_lines_rim}}{26}
+\entry {\code {penalties labels}}{26}
+\entry {\code {penalties nebulae}}{26}
+\entry {\code {penalties rim}}{26}
+\entry {\code {penalties stars}}{26}
+\entry {\code {penalties threshold}}{26}
+\initial {R}
+\entry {\code {reposition}}{27}
+\initial {S}
+\entry {\code {set box_height}}{21}
+\entry {\code {set box_width}}{21}
+\entry {\code {set center_declination}}{21}
+\entry {\code {set center_rectascension}}{21}
+\entry {\code {set constellation}}{22}
+\entry {\code {set faintest_cluster_magnitude}}{22}
+\entry {\code {set faintest_diffuse_nebula_magnitude}}{23}
+\entry {\code {set faintest_star_disk_magnitude}}{23}
+\entry {\code {set faintest_star_magnitude}}{23}
+\entry {\code {set faintest_star_with_label_magnitude}}{23}
+\entry {\code {set fontsize}}{25}
+\entry {\code {set grad_per_cm}}{21}
+\entry {\code {set label_skip}}{25}
+\entry {\code {set minimal_nebula_radius}}{25}
+\entry {\code {set minimal_star_radius}}{23}
+\entry {\code {set shortest_constellation_line}}{25}
+\entry {\code {set star_scaling}}{25}
+\entry {\code {set_label_text}}{27}
+\entry {\code {switch boundaries}}{22}
+\entry {\code {switch colored_stars}}{22}
+\entry {\code {switch constellation_lines}}{22}
+\entry {\code {switch ecliptic}}{22}
+\entry {\code {switch eps_output}}{22}
+\entry {\code {switch grid}}{22}
+\entry {\code {switch labels}}{22}
+\entry {\code {switch milky_way}}{22}
+\entry {\code {switch nebulae}}{22}
+\entry {\code {switch pdf_output}}{22}
+\initial {T}
+\entry {\code {text}}{27}

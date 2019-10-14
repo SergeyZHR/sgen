@@ -1,0 +1,84 @@
+@numchapentry{Introduction}{1}{Introduction}{1}
+@numsecentry{What it is}{1.1}{What it is}{1}
+@numsecentry{What it is not}{1.2}{What it is not}{1}
+@numsecentry{Online resources}{1.3}{Online resources}{1}
+@numsecentry{Successful use of PP3}{1.4}{Successful use of PP3}{2}
+@unnsubsecentry{Wikipedia}{10000.4.1}{}{2}
+@unnsubsecentry{French Wikipedia}{10000.4.2}{}{2}
+@unnsubsecentry{h2g2}{10000.4.3}{}{2}
+@numchapentry{Installation}{2}{Installation}{3}
+@numsecentry{Installation on Windows}{2.1}{Windows}{3}
+@numsubsecentry{Getting @TeX {}}{2.1.1}{Getting TeX}{3}
+@numsubsecentry{Getting Ghostscript}{2.1.2}{Getting Ghostscript}{3}
+@numsubsecentry{Installation of PP3 itself}{2.1.3}{Installing PP3}{3}
+@numsecentry{Installation on Linux}{2.2}{Linux}{4}
+@numsubsecentry{@acronym {RPM} installation}{2.2.1}{RPM installation}{4}
+@numsubsecentry{Building from sources}{2.2.2}{Building from sources}{4}
+@numsecentry{Increase @TeX {}'s memory}{2.3}{Increase TeX's memory}{4}
+@numchapentry{Basic astronomical terms}{3}{Basic astronomical terms}{7}
+@numsecentry{Celestial coordinate system}{3.1}{Celestial coordinate system}{7}
+@numsecentry{The system of magnitudes}{3.2}{Magnitudes}{7}
+@numsecentry{Constellations}{3.3}{Constellations}{7}
+@numsecentry{Catalogues: Flamsteed, Henry Draper, NGC/IC and Messier}{3.4}{Catalogues}{8}
+@numsubsecentry{Denoting stars}{3.4.1}{Denoting stars}{8}
+@numsubsecentry{Denoting nebulae}{3.4.2}{Denoting nebulae}{8}
+@numchapentry{Usage}{4}{Usage}{9}
+@numsecentry{Starting PP3}{4.1}{Invocation}{9}
+@numsecentry{Using pipes}{4.2}{Using pipes}{9}
+@numchapentry{Writing input scripts}{5}{Input scripts}{11}
+@numsecentry{Minimal example input script}{5.1}{Minimal example}{11}
+@numsecentry{More bells and wistles}{5.2}{More bells and wistles}{12}
+@numsecentry{Dimensions and scale}{5.3}{Dimensions and scale}{13}
+@numsecentry{Parameters and Commands}{5.4}{Parameters and commands}{14}
+@numsecentry{Labels}{5.5}{Labels}{14}
+@numsubsecentry{Changing label texts}{5.5.1}{Changing label texts}{14}
+@numsubsecentry{Deleting and adding labels}{5.5.2}{Deleting and adding labels}{15}
+@numsubsecentry{Reposition labels}{5.5.3}{Reposition labels}{15}
+@numsubsecentry{Text labels}{5.5.4}{Text labels}{16}
+@numsubsecentry{Using flexes}{5.5.5}{Using flexes}{17}
+@numsubsecentry{Tic mark labels}{5.5.6}{Tic labels}{17}
+@numsecentry{Deleting and adding stars and nebulae}{5.6}{Deleting and adding objects}{17}
+@numsecentry{Penalty scheme}{5.7}{Penalty scheme}{17}
+@numsubsecentry{Basics about penalties}{5.7.1}{Basics about penalties}{18}
+@numsubsecentry{The rim}{5.7.2}{The rim}{18}
+@numsubsecentry{Overlaps with line objects}{5.7.3}{Overlaps with line objects}{19}
+@numsubsecentry{Penalty threshold}{5.7.4}{Penalty threshold}{19}
+@numchapentry{Keywords reference}{6}{Keywords reference}{21}
+@numsecentry{General structure}{6.1}{General structure}{21}
+@numsecentry{Setting Parameters}{6.2}{Parameters}{21}
+@numsubsecentry{Essential parameters}{6.2.1}{Essential parameters}{21}
+@numsubsubsecentry{Map view, scale, and size}{6.2.1.1}{View control}{21}
+@numsubsubsecentry{Setting what file should be created}{6.2.1.2}{Output control}{21}
+@numsubsubsecentry{The highlighted constellation}{6.2.1.3}{Highlighted constellation}{22}
+@numsubsecentry{Switching things on or off}{6.2.2}{Switching things on or off}{22}
+@numsubsecentry{Filtering stars and nebulae by their brightness}{6.2.3}{Filtering by brightness}{22}
+@numsubsecentry{Colour, line style, and other layout}{6.2.4}{Colour and line style and other layout}{23}
+@numsubsubsecentry{Colours}{6.2.4.1}{Colours}{23}
+@numsubsubsecentry{Line styles and widths}{6.2.4.2}{Line styles and widths}{24}
+@numsubsubsecentry{Other layout parameters}{6.2.4.3}{Other layout parameters}{25}
+@numsubsecentry{Implementing a global style}{6.2.5}{Implementing a global style}{25}
+@numsubsecentry{Penalties}{6.2.6}{Penalties}{26}
+@numsubsecentry{Filenames}{6.2.7}{Filenames}{26}
+@numsecentry{Setting or deleting celestial objects and their labels}{6.3}{Commands}{27}
+@numsubsecentry{Adding and deleting stars and nebulae}{6.3.1}{Changing sky objects}{27}
+@numsubsecentry{How to add, delete, and reposition labels}{6.3.2}{Changing labels}{27}
+@numsubsecentry{How to place text on the map}{6.3.3}{Arbitrary text}{27}
+@numsubsubsecentry{Flexes}{6.3.3.1}{Flexes}{27}
+@numsubsubsecentry{Tic mark labels}{6.3.3.2}{Tic mark labels}{27}
+@numchapentry{PP3 and @LaTeX {}}{7}{PP3 and LaTeX}{29}
+@numsecentry{Using @LaTeX {} in labels}{7.1}{LaTeX in labels}{29}
+@numsecentry{@LaTeX {} preamble}{7.2}{LaTeX preamble}{30}
+@numsubsecentry{Default preamble}{7.2.1}{Default preamble}{30}
+@numsubsecentry{User preamble}{7.2.2}{User preamble}{31}
+@numsecentry{@LaTeX {} hooks}{7.3}{LaTeX hooks}{32}
+@appentry{Known problems}{A}{Known problems}{35}
+@appsecentry{Wishlist}{A.1}{Wishlist}{35}
+@appentry{Data file formats}{B}{Data file formats}{37}
+@appsecentry{Stars data file}{B.1}{Stars data file}{37}
+@appsecentry{Nebulae data file}{B.2}{Nebulae data file}{38}
+@appsecentry{Constellation lines data file}{B.3}{Lines data file}{38}
+@appsecentry{Boundaries data file}{B.4}{Boundaries data file}{39}
+@appsecentry{Milky Way data file}{B.5}{Milky Way data file}{40}
+@appsecentry{Label dimensions file}{B.6}{Label dimensions file}{40}
+@appentry{List of all constellations}{C}{List of all constellations}{43}
+@unnchapentry{Index}{10001}{Index}{47}

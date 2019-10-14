@@ -1,0 +1,23 @@
+# Orion
+#
+
+filename output orion.tex
+filename include wiki.pp3
+
+set box_width 9
+set box_height 9.3
+
+set faintest_star_magnitude 5
+set star_scaling 1.2
+
+objects_and_labels
+
+delete NGC 1973  NGC 1975 ;
+
+text Orion at 4.8 15 along declination towards SW ;
+text Taurus at 5.3 16.5 along declination towards N ;
+text Gemini at 6.45 15 along declination towards W ;
+text Monoceros at 6 -10 along declination towards NW ;
+text Lepus at 5.5 -12 along declination towards S ;
+text "Canis Major" at 6.3 -12 along declination towards SW ;
+text Eridanus at 5.1 -10 along declination ;

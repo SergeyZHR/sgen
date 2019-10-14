@@ -1,0 +1,330 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.6.1)  8 JUN 2015 11:28
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**swan2.tex
+(./swan2.tex
+LaTeX2e <2011/06/27>
+Babel <3.9h> and hyphenation patterns for 78 languages loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+No auxiliary output files.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: dvips.def on input line 130.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/dvips.def
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/pstricks/pstricks.sty
+Package: pstricks 2013/12/12 v0.60 LaTeX wrapper for `PSTricks' (RN,HV)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is not detected.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pstricks/pstricks.tex
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/pst-xkey.tex
+File: pst-xkey.tex 2005/11/25 v1.6 PSTricks specialization of xkeyval (HA)
+
+(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2012/10/14 v2.6b package option processing (HA)
+
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+\XKV@toks=\toks14
+\XKV@tempa@toks=\toks15
+\XKV@depth=\count87
+File: xkeyval.tex 2012/10/14 v2.6b key=value parser (HA)
+
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/keyval.tex))))
+(/usr/share/texlive/texmf-dist/tex/generic/pstricks/pst-fp.tex
+`pst-fp' v0.05, 2010/01/17 (hv)
+\pstFP@xs=\count88
+\pstFP@xia=\count89
+\pstFP@xib=\count90
+\pstFP@xfa=\count91
+\pstFP@xfb=\count92
+\pstFP@rega=\count93
+\pstFP@regb=\count94
+\pstFP@regs=\count95
+\pstFP@times=\count96
+)
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks16
+)
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks17
+\pgfkeys@temptoks=\toks18
+
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfkeysfiltered.code.tex
+\pgfkeys@tmptoks=\toks19
+))
+(/usr/share/texmf/tex/generic/pgf/utilities/pgffor.code.tex
+\pgffor@iter=\dimen103
+\pgffor@skip=\dimen104
+\pgffor@stack=\toks20
+\pgffor@toks=\toks21
+)
+\psLoopIndex=\count97
+
+`PSTricks' v2.51  <2014/02/03> (tvz)
+\pst@dima=\dimen105
+\pst@dimb=\dimen106
+\pst@dimc=\dimen107
+\pst@dimd=\dimen108
+\pst@dimg=\dimen109
+\pst@dimh=\dimen110
+\pst@dimm=\dimen111
+\pst@dimn=\dimen112
+\pst@dimo=\dimen113
+\pst@dimp=\dimen114
+\pst@hbox=\box26
+\pst@ibox=\box27
+\pst@boxg=\box28
+\pst@cnta=\count98
+\pst@cntb=\count99
+\pst@cntc=\count100
+\pst@cntd=\count101
+\pst@cntg=\count102
+\pst@cnth=\count103
+\pst@cntm=\count104
+\pst@cntn=\count105
+\pst@cnto=\count106
+\pst@cntp=\count107
+\@zero=\count108
+\pst@toks=\toks22
+(/usr/share/texlive/texmf-dist/tex/generic/pstricks/pstricks.con)
+\psunit=\dimen115
+\psxunit=\dimen116
+\psyunit=\dimen117
+\pst@C@@rType=\count109
+\pslinewidth=\dimen118
+\psk@startLW=\dimen119
+\psk@endLW=\dimen120
+\pst@customdefs=\toks23
+\pslinearc=\dimen121
+\pst@symbolStep=\dimen122
+\pst@symbolWidth=\dimen123
+\pst@symbolLinewidth=\dimen124
+\everypsbox=\toks24
+\psframesep=\dimen125
+\pslabelsep=\dimen126
+\sh@wgridXunit=\dimen127
+\sh@wgridYunit=\dimen128
+\pst@shift=\dimen129
+)
+File: pstricks.tex 2014/02/03 v2.51 `PSTricks' (tvz,hv)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pstricks/pst-fp.tex)
+File: pst-fp.tex 2014/02/03 v2.51 `PST-fp' (hv)
+
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Driver file: dvips.def on input line 225.
+LaTeX Info: Redefining \color on input line 702.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/pst-text/pst-text.sty
+Package: pst-text 2006/01/01 package wrapper for pst-text.tex (hv)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pst-text/pst-text.tex
+ v1.00, 2006/11/05(tvz,hv))
+File: pst-text.tex 2006/11/05 1.00 `pst-text' (tvz)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/mathptmx.sty
+Package: mathptmx 2005/04/12 PSNFSS-v9.2a Times w/ Math, improved (SPQR, WaS) 
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 28.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/ztmcm/m/n on input line 28.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/ztmcm/m/n on input line 28.
+LaTeX Font Info:    Redeclaring symbol font `letters' on input line 29.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/ztmcm/m/it on input line 29.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/ztmcm/m/it on input line 29.
+LaTeX Font Info:    Redeclaring symbol font `symbols' on input line 30.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/ztmcm/m/n on input line 30.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/ztmcm/m/n on input line 30.
+LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 31.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/ztmcm/m/n on input line 31.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/ztmcm/m/n on input line 31.
+\symbold=\mathgroup4
+\symitalic=\mathgroup5
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/ptm/bx/n on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/ptm/bx/n on input line 34.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/ptm/m/it on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/ptm/m/it on input line 35.
+LaTeX Info: Redefining \hbar on input line 50.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/helvet.sty
+Package: helvet 2005/04/12 PSNFSS-v9.2a (WaS) 
+)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count110
+\Gm@cntv=\count111
+\c@Gm@tempcnt=\count112
+\Gm@bindingoffset=\dimen130
+\Gm@wd@mp=\dimen131
+\Gm@odd@mp=\dimen132
+\Gm@even@mp=\dimen133
+\Gm@layoutwidth=\dimen134
+\Gm@layoutheight=\dimen135
+\Gm@layouthoffset=\dimen136
+\Gm@layoutvoffset=\dimen137
+\Gm@dimlist=\toks25
+)
+No file swan2.aux.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 21.
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+\big@size=\dimen138
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 21.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd
+File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
+)
+*geometry* driver: auto-detecting
+*geometry* detected driver: dvips
+*geometry* verbose mode - [ preamble ] result:
+* driver: dvips
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(0.0pt, 199.74625pt, 0.0pt)
+* v-part:(T,H,B)=(0.0pt, 100.375pt, 0.0pt)
+* \paperwidth=199.74625pt
+* \paperheight=100.375pt
+* \textwidth=199.74625pt
+* \textheight=100.375pt
+* \oddsidemargin=-72.26999pt
+* \evensidemargin=-72.26999pt
+* \topmargin=-72.26999pt
+* \headheight=0.0pt
+* \headsep=0.0pt
+* \topskip=10.0pt
+* \footskip=0.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10> not available
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 66.
+LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 39
+2.
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
+File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
+)
+LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 39
+2.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlztmcm.fd
+File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
+)
+LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 39
+2.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsztmcm.fd
+File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
+)
+LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 39
+2.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omxztmcm.fd
+File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
+)
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 392.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 392.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 392.
+ [1
+
+] ) 
+Here is how much of TeX's memory you used:
+ 3839 strings out of 493305
+ 58484 string characters out of 6139898
+ 155350 words of memory out of 7500000
+ 7269 multiletter control sequences out of 15000+600000
+ 13419 words of font info for 35 fonts, out of 8000000 for 9000
+ 957 hyphenation exceptions out of 8191
+ 37i,8n,68p,289b,289s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on swan2.dvi (1 page, 30372 bytes).
