@@ -11,10 +11,10 @@ import glob
 
 N_deep = 10
 N_star = 10
-decS = -85	#>-85
+decS = -30	#>-85
 decE = 85   #<85
 clear = 1
-Nmaps = 30
+Nmaps = 20
 show_ans = True
 show_N = False
 
@@ -54,7 +54,7 @@ def make_chart(alpha0,delta0,N):
 			{\vspace{1pc}
 			\hspace{13pc} \Large \sc  Разный скайчарт! \par
 			\vspace{1.5pc}
-			\hspace{13pc} \large \sl Больше скайчартов богу скайчартов!  \hspace{10 pt} 09.10.2019\\[1.5pc]
+			\hspace{13pc} \large \sl Больше скайчартов богу скайчартов!  \hspace{10 pt} 14.11.2019\\[1.5pc]
 			 \rule{\textwidth}{0.5pt}}
 			\vspace{-2pc}
 			 		
