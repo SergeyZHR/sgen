@@ -14,7 +14,7 @@ N_star = 10
 decS = -85	#>-85
 decE = 85   #<85
 clear = 1
-Nmaps = 20
+Nmaps = 2
 show_ans = False
 show_N = False
 gen_ans = True
@@ -155,9 +155,7 @@ def make_chart(alpha0,delta0,N):
 	set star_scaling 0.5
 	set faintest_star_disk_magnitude 5.5
 	set minimal_star_radius 0.005
-	set faintest_cluster_magnitude -2
-	set faintest_star_with_label_magnitude -2
-	set faintest_diffuse_nebula_magnitude -2
+	set faintest_star_with_label_magnitude -2.0
 
 	switch constellation_lines on
 	switch ecliptic on
@@ -165,7 +163,7 @@ def make_chart(alpha0,delta0,N):
 	switch milky_way off
 	switch grid on
 	switch boundaries on
-	switch nebulae on
+	switch nebulae off
 	switch labels on
 	switch colored_stars off
 	color stars 0 0 0
@@ -186,8 +184,6 @@ def make_chart(alpha0,delta0,N):
 	switch pdf_output on
 	switch eps_output off
 	objects_and_labels
-	delete $$NOMLIST$$;
-	delete_labels $$NOMLIST$$;
 
 	'''
 
@@ -303,23 +299,20 @@ def make_chart(alpha0,delta0,N):
 	pp3=pp3.replace('$$RA$$',str(alpha0/15.))
 	pp3=pp3.replace('$$DEC$$',str(delta0))
 
-	M_STR = ''
-	Mdat=np.array(Mdat)
-	for i in range(1,111):
-		if i not in list(Mdat[:,0]): M_STR+=' M '+str(int(i))
-
-
 	pp3Ans=pp3Ans.replace('$$N$$',str(N))
 	pp3Ans=pp3Ans.replace('$$RA$$',str(alpha0/15.))
 	pp3Ans=pp3Ans.replace('$$DEC$$',str(delta0))
-	pp3Ans=pp3Ans.replace('$$NOMLIST$$',M_STR)
+
+	for M in Mdat:
+		M_str = 'text "\\\\small M'+str(int(M[0]))+' \\\\hskip0.3em \\\\psdots[dotstyle=+,dotangle=45,dotsize=5pt](0,0)" at '+str(M[1]/15)+' '+str(M[2])+' color 0.7 0.3 0.3 towards W_ ;\n'
+		pp3Ans+=M_str
 
 	for S in Sdat:
 		stemp=S[3].split(' ')
 		if stemp[0][0]=='\\':
 			stemp[0]='\\'+stemp[0]
 		#star_str = 'text "$'+stemp[0]+'$ '+stemp[1]+'" at '+S[1]+' '+S[2]+' towards NE ;\n'
-		star_str = 'text "$'+stemp[0]+'$ '+stemp[1]+' \\\\hskip0.3em \\\\psdots[dotstyle=+,dotangle=45,dotsize=4pt](0,0)" at '+S[1]+' '+S[2]+' towards W_ ;\n'
+		star_str = 'text "\\\\small $'+stemp[0]+'$ '+stemp[1]+' \\\\hskip0.3em \\\\psdots[dotstyle=+,dotangle=45,dotsize=5pt](0,0)" at '+S[1]+' '+S[2]+' color 0.3 0.7 0.3 towards W_ ;\n'
 		pp3Ans+=star_str
 
 	for const in Constdat:
