@@ -10,17 +10,15 @@ import os
 import glob
 
 N_deep = 10
-N_star = 12
+N_star = 10
 decS = -85	#>-85
 decE = 85   #<85
 clear = 1
-Nmaps = 500
+Nmaps = 2
 show_ans = False
 show_N = False
 gen_ans = True
 SNstr=''
-star_list='stars_all.csv'
-deep_list='deep.csv'
 
 def make_chart(alpha0,delta0,N):
 	tex =  r'''
@@ -49,14 +47,14 @@ def make_chart(alpha0,delta0,N):
 				\centering
 				\vspace{-4pc}
 				\hspace*{0pc}
-				\includegraphics[width = 0.32 \textwidth]{LogoN.png}
+				\includegraphics[width = 0.2 \textwidth]{Logo2.jpg}
 				\vspace{1pc}
 			\end{wrapfigure}	
 			
 			{\vspace{1pc}
-			\hspace{15pc} \Large \sc  Скайчарт $$NUMBER$$! \par
+			\hspace{13pc} \Large \sc  Скайчарт $$NUMBER$$! \par
 			\vspace{1.5pc}
-			\hspace{14pc} \large \sl ОНИ пришли и на сборы! \hspace{8 pt} 17.08.2020\\[1.5pc]
+			\hspace{12pc} \large \sl ОНИ пришли и на сборы! \hspace{8 pt} 16.08.2020\\[1.5pc]
 			 \rule{\textwidth}{0.5pt}}
 			\vspace{-2pc}
 			 		
@@ -87,8 +85,6 @@ def make_chart(alpha0,delta0,N):
 		
 	\end{document}
 	'''
-	#\includegraphics[width = 0.32 \textwidth]{Logo.jpg}		#+2pc
-	#\includegraphics[width = 0.2 \textwidth]{Logo2.jpg}		
 
 	texAns =  r'''
 	\documentclass[12pt,a4paper]{article}
@@ -105,7 +101,7 @@ def make_chart(alpha0,delta0,N):
 	\center
 	\bf
 	Ответ на скайчарт $$NUMBER$$\\
-	$\alpha=$$RA$$^h$, $\delta=$$DEC$$^\circ$
+	$\alpha=$$RA$$^\circ$, $\delta=$$DEC$$^\circ$
 	\begin{figure}[H]
 		\hspace*{ $$SHIFT$$\textwidth}				
 		\includegraphics[width = 1.05\textwidth, angle = $$ANGLE$$]{$$MAP_NAME$$.pdf}
@@ -197,16 +193,16 @@ def make_chart(alpha0,delta0,N):
 	#alpha0=0
 	#delta0=0
 
-	Sdat = np.loadtxt(star_list,dtype=str,delimiter=',',encoding='UTF-8')
-	Mdat = np.loadtxt(deep_list,dtype=str,delimiter=';')
+	Sdat = np.loadtxt('stars.csv',dtype=str,delimiter=',',encoding='UTF-8')
+	Mdat = np.loadtxt('M.csv',delimiter=';')
 	Constdat = np.loadtxt('Const.csv',dtype=str,delimiter=';')
 
 
-	alphaS =15.* Sdat[:,1].astype(float)
+	alphaS =15.*  Sdat[:,1].astype(float)
 	deltaS = Sdat[:,2].astype(float)
 
-	alphaM = Mdat[:,1].astype(float)
-	deltaM = Mdat[:,2].astype(float)
+	alphaM = Mdat[:,1]
+	deltaM = Mdat[:,2]
 
 	stars=SkyCoord(alphaS*u.degree, deltaS*u.degree)
 	Ms=SkyCoord(alphaM*u.degree, deltaM*u.degree)
@@ -230,7 +226,7 @@ def make_chart(alpha0,delta0,N):
 	star_table=''
 
 	endOfObj=''
-	if N_star+N_deep<23:
+	if N_star+N_deep<21:
 		endOfObj=r'\\'
 
 	if N_star<len(Sdat):
@@ -246,11 +242,11 @@ def make_chart(alpha0,delta0,N):
 	m_list=''
 
 	if N_deep<len(Mdat):
-		Mdat_idx = sorted(random.sample(range(len(Mdat)), N_deep) ) 
-		Mdat = Mdat[Mdat_idx]
+		Mdat =  np.array(random.sample(list(Mdat), N_deep) ) 
+		Mdat = sorted(Mdat,key=lambda x:x[0])
 
 	for M in Mdat:
-		m_list+=M[0]+', '+endOfObj
+		m_list+='M'+str(int(M[0]))+', '+endOfObj
 	m_list=m_list[:-2-len(endOfObj)]+'.'
 
 	tex = tex.replace('$$MAP_NAME$$',map_name)
@@ -307,51 +303,17 @@ def make_chart(alpha0,delta0,N):
 	pp3Ans=pp3Ans.replace('$$RA$$',str(alpha0/15.))
 	pp3Ans=pp3Ans.replace('$$DEC$$',str(delta0))
 
-	if len(Mdat)!=10:
-		print("LENDATTT!!!!!!!!!!!!!",len(Mdat))
-	alphas_label=[]
-	deltas_label=[]
-	def nearest(ra,dec):
-		if len(alphas_label)==0: return 180
-		alphas_labelNP=np.array(alphas_label)
-		deltas_labelNP=np.array(deltas_label)
-		#minres = (np.sqrt((alphas_labelNP-ra)**2*np.cos(np.radians(deltas_labelNP))**2+(deltas_labelNP-dec)**2)).min()
-		minres = (np.sqrt((alphas_labelNP-ra)**2*np.cos(np.radians(dec))**2+(deltas_labelNP-dec)**2)).min()
-		#print(minres)
-		if minres>3:
-			return False
-		else:
-			return True
-		#return minres
-
 	for M in Mdat:
-		towards = 'W_'
-		if nearest(float(M[1]),float(M[2]) ):
-			towards='E_'
-		M_strX = 'text "\\\\psdots[dotstyle=+,dotangle=45,dotsize=5pt](0,0)" at '+str(float(M[1])/15)+' '+str(M[2])+' color 0.7 0.3 0.3 towards W_ ;\n'
-		M_strN = 'text "\\\\small '+M[0]+' \\\\hskip0.3em" at '+str(float(M[1])/15)+' '+str(M[2])+' color 0.7 0.3 0.3 towards '+towards+' ;\n'
-
-		alphas_label.append(float(M[1]))
-		deltas_label.append(float(M[2]))
-		pp3Ans+=M_strX
-		pp3Ans+=M_strN
-
+		M_str = 'text "\\\\small M'+str(int(M[0]))+' \\\\hskip0.3em \\\\psdots[dotstyle=+,dotangle=45,dotsize=5pt](0,0)" at '+str(M[1]/15)+' '+str(M[2])+' color 0.7 0.3 0.3 towards W_ ;\n'
+		pp3Ans+=M_str
 
 	for S in Sdat:
 		stemp=S[3].split(' ')
 		if stemp[0][0]=='\\':
 			stemp[0]='\\'+stemp[0]
-
-		towards = 'W_'
-		if nearest(float(S[1])*15,float(M[2]) ):
-			towards='E_'
 		#star_str = 'text "$'+stemp[0]+'$ '+stemp[1]+'" at '+S[1]+' '+S[2]+' towards NE ;\n'
-		star_strX = 'text "\\\\psdots[dotstyle=+,dotangle=45,dotsize=5pt](0,0)" at '+S[1]+' '+S[2]+' color 0.3 0.7 0.3 towards W_ ;\n'
-		star_strN = 'text "\\\\small $'+stemp[0]+'$ '+stemp[1]+' \\\\hskip0.3em " at '+S[1]+' '+S[2]+' color 0.3 0.7 0.3 towards '+towards+' ;\n'
-		alphas_label.append(float(S[1])*15)
-		deltas_label.append(float(S[2]))
-		pp3Ans+=star_strX
-		pp3Ans+=star_strN		
+		star_str = 'text "\\\\small $'+stemp[0]+'$ '+stemp[1]+' \\\\hskip0.3em \\\\psdots[dotstyle=+,dotangle=45,dotsize=5pt](0,0)" at '+S[1]+' '+S[2]+' color 0.3 0.7 0.3 towards W_ ;\n'
+		pp3Ans+=star_str
 
 	for const in Constdat:
 		c_str = 'text "\\\\footnotesize '+const[1]+'" at '+const[2]+' '+const[3]+' color 0.7 0.8 0.8 towards S ;\n'
@@ -394,7 +356,7 @@ for i in range(1,Nmaps+1):
 
 	make_chart(ra, dec,i)
 	print (i, 'chart done')
-	#print (ra,dec)
+	print (ra,dec)
 	 	
 rem = np.hstack([glob.glob('./M*.tex'), glob.glob('./*.log'), glob.glob('./*.aux'), glob.glob('./*.eps'), glob.glob('./*.dvi'), glob.glob('./*.p3'), glob.glob('./*.dat')])
 for f in rem:
@@ -403,6 +365,6 @@ for f in rem:
 print(SNstr)
 
 call('rm ./temp_ans/*', shell=True)
-#call('cp ./Chart*.tex ./temp_ans', shell=True)
-call('cp ./Chart*.pdf ./temp_ans', shell=True)
+call('cp ./Chart*.tex ./temp_ans', shell=True)
+call('cp ./*.pdf ./temp_ans', shell=True)
 #call('pdfjoin --outfile ./ALLcharts.pdf ./temp/*pdf', shell=True)
