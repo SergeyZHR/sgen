@@ -11,15 +11,15 @@ import glob
 
 N_deep = 10
 N_star = 12
-decS = -85	#>-85
+decS = -40	#>-85
 decE = 85   #<85
 clear = 1
-Nmaps = 500
-show_ans = False
+Nmaps = 10
+show_ans = True
 show_N = False
-gen_ans = True
+gen_ans = False
 SNstr=''
-star_list='stars_all.csv'
+star_list='stars.csv'
 deep_list='deep.csv'
 
 def make_chart(alpha0,delta0,N):
@@ -54,9 +54,9 @@ def make_chart(alpha0,delta0,N):
 			\end{wrapfigure}	
 			
 			{\vspace{1pc}
-			\hspace{15pc} \Large \sc  Скайчарт $$NUMBER$$! \par
+			\hspace{15pc} \Large \sc  Скайчарт Коронный! \par
 			\vspace{1.5pc}
-			\hspace{14pc} \large \sl ОНИ пришли и на сборы! \hspace{8 pt} 17.08.2020\\[1.5pc]
+			\hspace{14pc} \large \sl Когда вам ещё печатных принесут... \hspace{3 pt} 01.10.2020\\[1.5pc]
 			 \rule{\textwidth}{0.5pt}}
 			\vspace{-2pc}
 			 		
@@ -402,7 +402,7 @@ for f in rem:
 
 print(SNstr)
 
-call('rm ./temp_ans/*', shell=True)
+call('rm ./temp/*', shell=True)
 #call('cp ./Chart*.tex ./temp_ans', shell=True)
-call('cp ./Chart*.pdf ./temp_ans', shell=True)
-#call('pdfjoin --outfile ./ALLcharts.pdf ./temp/*pdf', shell=True)
+call('cp ./Chart*.pdf ./temp', shell=True)
+call('pdfjoin --outfile ./ALLcharts.pdf ./temp/*pdf', shell=True)
